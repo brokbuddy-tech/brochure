@@ -1,9 +1,8 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
-import { AlertCircle, CheckCircle2, RefreshCw, FileText, Users, DollarSign, Home } from 'lucide-react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { RefreshCw, FileText, Users, DollarSign, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const chaosItems = [
