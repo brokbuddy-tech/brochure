@@ -73,7 +73,7 @@ export function BrochureDashboard() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-4 pointer-events-none">
                    <div className="px-6 py-3 bg-indigo-600 rounded-full text-xs font-bold shadow-2xl animate-bounce">Revenue Tracking</div>
                    <div className="px-6 py-3 bg-purple-600 rounded-full text-xs font-bold shadow-2xl animate-bounce" style={{ animationDelay: '0.2s' }}>Growth Monitoring</div>
-                   <div className="px-6 py-3 bg-slate-800 rounded-full text-xs font-bold shadow-2xl animate-bounce" style={{ animationDelay: '0.4s' }}>Agent KPIs</div>
+                   <div className="px-6 py-3 bg-white text-slate-900 rounded-full text-xs font-bold shadow-2xl animate-bounce" style={{ animationDelay: '0.4s' }}>Agent KPIs</div>
                 </div>
               </div>
             </CardContent>
