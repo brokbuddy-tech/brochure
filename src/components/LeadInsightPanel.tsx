@@ -39,14 +39,14 @@ export function LeadInsightPanel() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-headline py-8 text-xl tracking-[0.1em] transition-all duration-500 uppercase shadow-xl rounded-2xl">
+        <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-headline py-8 text-xl tracking-[0.15em] transition-all duration-500 uppercase shadow-2xl rounded-2xl animate-pulse-soft">
           BOOK A DISCOVERY CALL
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] bg-card border-primary/20 max-h-[90vh] overflow-y-auto rounded-[2rem]">
+      <DialogContent className="sm:max-w-[600px] bg-card border-primary/20 max-h-[90vh] overflow-y-auto rounded-[2.5rem]">
         <DialogHeader>
           <DialogTitle className="font-headline text-3xl text-primary">AI Lead Quality Scoring</DialogTitle>
-          <p className="text-sm font-body text-muted-foreground">Preview our LQS technology before your demo.</p>
+          <p className="text-sm font-body text-muted-foreground">Preview our LQS technology before your 15-minute walkthrough.</p>
         </DialogHeader>
         
         {!result ? (
@@ -54,26 +54,26 @@ export function LeadInsightPanel() {
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-xs uppercase tracking-widest text-foreground/50">Lead Name</Label>
-                <Input id="name" name="name" placeholder="John Smith" required className="bg-background/50 border-foreground/5 h-12" />
+                <Input id="name" name="name" placeholder="John Smith" required className="bg-background/50 border-foreground/10 h-12 rounded-xl" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="budget" className="text-xs uppercase tracking-widest text-foreground/50">Budget (AUD)</Label>
-                <Input id="budget" name="budget" type="number" placeholder="1500000" required className="bg-background/50 border-foreground/5 h-12" />
+                <Input id="budget" name="budget" type="number" placeholder="1500000" required className="bg-background/50 border-foreground/10 h-12 rounded-xl" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="location" className="text-xs uppercase tracking-widest text-foreground/50">Suburb</Label>
-                <Input id="location" name="location" placeholder="Bondi, NSW" required className="bg-background/50 border-foreground/5 h-12" />
+                <Input id="location" name="location" placeholder="Bondi, NSW" required className="bg-background/50 border-foreground/10 h-12 rounded-xl" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="type" className="text-xs uppercase tracking-widest text-foreground/50">Property Type</Label>
-                <Input id="type" name="type" placeholder="Luxury Apartment" required className="bg-background/50 border-foreground/5 h-12" />
+                <Input id="type" name="type" placeholder="Luxury Apartment" required className="bg-background/50 border-foreground/10 h-12 rounded-xl" />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="motivation" className="text-xs uppercase tracking-widest text-foreground/50">Motivation</Label>
-              <Input id="motivation" name="motivation" placeholder="Investment opportunity / Downsizing" required className="bg-background/50 border-foreground/5 h-12" />
+              <Input id="motivation" name="motivation" placeholder="Investment opportunity / Downsizing" required className="bg-background/50 border-foreground/10 h-12 rounded-xl" />
             </div>
             
             <Button type="submit" disabled={loading} className="w-full h-14 bg-primary text-primary-foreground text-lg rounded-xl">

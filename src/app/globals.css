@@ -12,8 +12,8 @@
     --popover-foreground: 210 10% 15%;
     --primary: 158 13% 45%; /* Sage Green */
     --primary-foreground: 40 20% 98%;
-    --secondary: 210 10% 30%;
-    --secondary-foreground: 40 20% 98%;
+    --secondary: 45 40% 65%; /* Champagne Gold */
+    --secondary-foreground: 210 10% 15%;
     --muted: 40 10% 90%;
     --muted-foreground: 210 5% 45%;
     --accent: 158 13% 45%;
@@ -23,7 +23,7 @@
     --border: 210 10% 88%;
     --input: 210 10% 88%;
     --ring: 158 13% 45%;
-    --radius: 1.25rem;
+    --radius: 2rem;
   }
 }
 
@@ -34,8 +34,8 @@
   body {
     @apply bg-background text-foreground font-body overflow-hidden h-screen w-screen selection:bg-primary/20;
     background-image: 
-      radial-gradient(circle at 10% 20%, rgba(158, 19, 45, 0.02) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(158, 19, 45, 0.02) 0%, transparent 40%);
+      radial-gradient(circle at 10% 20%, rgba(158, 13, 45, 0.02) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(158, 13, 45, 0.02) 0%, transparent 40%);
   }
 }
 
@@ -44,7 +44,7 @@
 }
 
 .font-body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'PT Sans', sans-serif;
 }
 
 .frosted-bento {
@@ -56,10 +56,19 @@
 }
 
 @keyframes glow {
-  0%, 100% { border-color: rgba(158, 13, 45, 0.2); box-shadow: 0 0 10px rgba(158, 13, 45, 0.1); }
-  50% { border-color: rgba(158, 13, 45, 0.5); box-shadow: 0 0 25px rgba(158, 13, 45, 0.2); }
+  0%, 100% { border-color: rgba(158, 13, 45, 0.2); box-shadow: 0 0 15px rgba(158, 13, 45, 0.1); }
+  50% { border-color: rgba(158, 13, 45, 0.5); box-shadow: 0 0 35px rgba(158, 13, 45, 0.2); }
 }
 
 .animate-glow {
   animation: glow 4s infinite ease-in-out;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.95; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out;
 }

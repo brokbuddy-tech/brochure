@@ -2,43 +2,56 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Sparkles, BarChart3, ShieldCheck, ChevronRight } from 'lucide-react';
+import { Sparkles, BarChart3, ShieldCheck, Zap, ChevronRight, Lock } from 'lucide-react';
 
 const FEATURES = [
   {
     id: 'ai',
-    title: 'AI & Automated Workflows',
+    title: 'AI & Workflow Automation',
     icon: Sparkles,
     color: 'text-primary',
     items: [
-      'AI-summarized communications',
-      'Generative listing descriptions',
-      'Automated follow-ups',
+      'AI-Powered Insights',
+      'Workflow Automation',
+      'Follow-up Automation',
+      'Smart Notifications',
       'Lead Quality Scoring (LQS)'
     ]
   },
   {
     id: 'deal',
-    title: 'Deal & Pipeline Mastery',
-    icon: BarChart3,
+    title: 'Deal & Client Mastery',
+    icon: Zap,
     color: 'text-secondary',
     items: [
-      'Real-time revenue tracking',
-      'Advanced pipeline management',
-      'Business intelligence dashboards',
-      'Performance forecasting'
+      'Deal Tracking System',
+      'Pipeline Management',
+      'Client Management',
+      'Communication Tracking'
     ]
   },
   {
     id: 'agency',
-    title: 'Total Agency Oversight',
+    title: 'Complete Agency Operations',
     icon: ShieldCheck,
     color: 'text-foreground/60',
     items: [
-      'Team management & permissions',
-      'Automated portal syndication',
-      'Domain & REA Group integration',
-      'Enterprise-grade data security'
+      'Brokerage & Team Management',
+      'Property Management',
+      'Document Management',
+      'Role-Based Access Control'
+    ]
+  },
+  {
+    id: 'intelligence',
+    title: 'Intelligence & Security',
+    icon: Lock,
+    color: 'text-primary/60',
+    items: [
+      'Performance Dashboards',
+      'Revenue Tracking',
+      'Business Intelligence',
+      'Cloud Access & Data Security'
     ]
   }
 ];
@@ -47,7 +60,7 @@ export function FeatureAccordion() {
   const [activeTab, setActiveTab] = useState<string | null>('ai');
 
   return (
-    <div className="flex-1 flex flex-col space-y-4">
+    <div className="flex-1 flex flex-col space-y-2">
       {FEATURES.map((tab) => {
         const isActive = activeTab === tab.id;
         const Icon = tab.icon;
@@ -57,7 +70,7 @@ export function FeatureAccordion() {
             key={tab.id}
             className={cn(
               "group relative overflow-hidden rounded-2xl border transition-all duration-700 cursor-default",
-              isActive ? "flex-1 bg-white/60 border-primary/20 p-8" : "h-20 bg-transparent border-transparent px-6 flex items-center"
+              isActive ? "flex-1 bg-white/60 border-primary/20 p-6" : "h-16 bg-transparent border-transparent px-4 flex items-center"
             )}
             onMouseEnter={() => setActiveTab(tab.id)}
           >
@@ -66,17 +79,17 @@ export function FeatureAccordion() {
               !isActive && "items-center"
             )}>
               <div className={cn(
-                "p-3 rounded-xl transition-all duration-500",
-                isActive ? "bg-primary/10 mr-6" : "bg-foreground/5 mr-4"
+                "p-2 rounded-xl transition-all duration-500",
+                isActive ? "bg-primary/10 mr-4" : "bg-foreground/5 mr-3"
               )}>
-                <Icon className={cn("w-6 h-6", isActive ? "text-primary" : "text-foreground/40")} />
+                <Icon className={cn("w-5 h-5", isActive ? "text-primary" : "text-foreground/40")} />
               </div>
               
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <h4 className={cn(
                     "font-headline transition-all duration-500",
-                    isActive ? "text-2xl mb-4" : "text-lg text-foreground/60"
+                    isActive ? "text-xl mb-4" : "text-base text-foreground/60"
                   )}>
                     {tab.title}
                   </h4>
@@ -84,10 +97,10 @@ export function FeatureAccordion() {
                 </div>
                 
                 {isActive && (
-                  <ul className="space-y-3 animate-in fade-in slide-in-from-left-4 duration-700">
+                  <ul className="space-y-2 animate-in fade-in slide-in-from-left-4 duration-700">
                     {tab.items.map((item, idx) => (
                       <li key={idx} className="flex items-center text-sm font-body text-foreground/70">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary/40 mr-3 shrink-0" />
+                        <div className="w-1 h-1 rounded-full bg-primary/40 mr-3 shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -96,9 +109,8 @@ export function FeatureAccordion() {
               </div>
             </div>
             
-            {/* Visual accent for active tab */}
             {isActive && (
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl pointer-events-none" />
             )}
           </div>
         );

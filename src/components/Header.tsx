@@ -3,7 +3,7 @@ import { EliteNetworkDrawer } from './EliteNetworkDrawer';
 
 export function Header() {
   return (
-    <nav className="fixed top-0 left-0 w-full h-24 flex items-center justify-between px-12 z-50">
+    <nav className="fixed top-0 left-0 w-full h-24 flex items-center justify-between px-12 z-50 bg-background/50 backdrop-blur-md">
       <div className="flex items-center space-x-3 group cursor-pointer">
         <div className="p-2 bg-foreground/5 rounded-xl group-hover:bg-primary/10 transition-colors">
           <svg
@@ -24,7 +24,10 @@ export function Header() {
             <circle cx="20" cy="18" r="3" stroke="currentColor" strokeWidth="2" />
           </svg>
         </div>
-        <span className="text-lg font-headline tracking-[0.2em] uppercase text-foreground">BrokBuddy</span>
+        <div className="flex flex-col">
+          <span className="text-lg font-headline tracking-[0.2em] uppercase text-foreground leading-none">BrokBuddy</span>
+          <span className="text-[9px] uppercase tracking-[0.1em] text-foreground/40 font-body font-bold mt-1">Powered by Broker. Evolved by AI.</span>
+        </div>
       </div>
       
       <div className="flex items-center space-x-12">
