@@ -39,85 +39,86 @@ export function LeadInsightPanel() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-headline py-7 text-xl tracking-[0.1em] transition-all duration-500 glow-primary animate-pulse-soft uppercase shadow-2xl rounded-full">
+        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-headline py-8 text-xl tracking-[0.1em] transition-all duration-500 uppercase shadow-xl rounded-2xl">
           BOOK A DISCOVERY CALL
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] bg-card border-primary/20 max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] bg-card border-primary/20 max-h-[90vh] overflow-y-auto rounded-[2rem]">
         <DialogHeader>
-          <DialogTitle className="font-headline text-2xl text-primary">AI Lead Quality Scoring</DialogTitle>
+          <DialogTitle className="font-headline text-3xl text-primary">AI Lead Quality Scoring</DialogTitle>
+          <p className="text-sm font-body text-muted-foreground">Preview our LQS technology before your demo.</p>
         </DialogHeader>
         
         {!result ? (
-          <form onSubmit={handleSubmit} className="space-y-6 mt-4">
-            <div className="grid grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+            <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Lead Name</Label>
-                <Input id="name" name="name" placeholder="John Smith" required className="bg-background" />
+                <Label htmlFor="name" className="text-xs uppercase tracking-widest text-foreground/50">Lead Name</Label>
+                <Input id="name" name="name" placeholder="John Smith" required className="bg-background/50 border-foreground/5 h-12" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="budget">Budget (AUD)</Label>
-                <Input id="budget" name="budget" type="number" placeholder="1500000" required className="bg-background" />
+                <Label htmlFor="budget" className="text-xs uppercase tracking-widest text-foreground/50">Budget (AUD)</Label>
+                <Input id="budget" name="budget" type="number" placeholder="1500000" required className="bg-background/50 border-foreground/5 h-12" />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="location">Suburb</Label>
-                <Input id="location" name="location" placeholder="Bondi, NSW" required className="bg-background" />
+                <Label htmlFor="location" className="text-xs uppercase tracking-widest text-foreground/50">Suburb</Label>
+                <Input id="location" name="location" placeholder="Bondi, NSW" required className="bg-background/50 border-foreground/5 h-12" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="type">Property Type</Label>
-                <Input id="type" name="type" placeholder="Luxury Apartment" required className="bg-background" />
+                <Label htmlFor="type" className="text-xs uppercase tracking-widest text-foreground/50">Property Type</Label>
+                <Input id="type" name="type" placeholder="Luxury Apartment" required className="bg-background/50 border-foreground/5 h-12" />
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="motivation">Motivation</Label>
-              <Input id="motivation" name="motivation" placeholder="Investment opportunity / Downsizing" required className="bg-background" />
+              <Label htmlFor="motivation" className="text-xs uppercase tracking-widest text-foreground/50">Motivation</Label>
+              <Input id="motivation" name="motivation" placeholder="Investment opportunity / Downsizing" required className="bg-background/50 border-foreground/5 h-12" />
             </div>
             
-            <Button type="submit" disabled={loading} className="w-full bg-primary text-primary-foreground">
-              {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Zap className="mr-2 h-4 w-4" />}
+            <Button type="submit" disabled={loading} className="w-full h-14 bg-primary text-primary-foreground text-lg rounded-xl">
+              {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Zap className="mr-2 h-5 w-5" />}
               Generate AI Insights
             </Button>
           </form>
         ) : (
-          <div className="space-y-6 mt-4 animate-in fade-in slide-in-from-bottom-4">
-            <div className="flex items-center justify-between p-6 bg-primary/5 rounded-xl border border-primary/20">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-primary/10 rounded-full">
-                  <Target className="w-8 h-8 text-primary" />
+          <div className="space-y-8 mt-6 animate-in fade-in slide-in-from-bottom-4">
+            <div className="flex items-center justify-between p-8 bg-primary/5 rounded-[1.5rem] border border-primary/20">
+              <div className="flex items-center space-x-6">
+                <div className="p-4 bg-primary/10 rounded-2xl">
+                  <Target className="w-10 h-10 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground uppercase tracking-widest">Lead Quality Score</p>
-                  <p className="text-4xl font-headline text-primary">{result.leadQualityScore}/100</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Lead Quality Score</p>
+                  <p className="text-5xl font-headline text-primary">{result.leadQualityScore}<span className="text-lg opacity-40">/100</span></p>
                 </div>
               </div>
-              <Badge variant="outline" className="border-primary text-primary text-lg px-4 py-1">
+              <Badge variant="outline" className="border-primary/30 text-primary text-sm px-4 py-1.5 uppercase tracking-widest">
                 {result.leadQualityScore > 80 ? 'Elite' : result.leadQualityScore > 60 ? 'Strong' : 'Moderate'}
               </Badge>
             </div>
 
-            <div className="space-y-3">
-              <h4 className="flex items-center font-headline text-lg text-secondary">
-                <TrendingUp className="w-5 h-5 mr-2" />
-                Concise Insights
+            <div className="space-y-4">
+              <h4 className="flex items-center font-headline text-xl text-foreground">
+                <TrendingUp className="w-5 h-5 mr-3 text-primary" />
+                Strategic Insights
               </h4>
-              <div className="bg-background/50 p-4 rounded-lg text-sm font-body leading-relaxed whitespace-pre-line">
+              <div className="bg-background/50 p-6 rounded-2xl text-sm font-body leading-relaxed whitespace-pre-line border border-foreground/5">
                 {result.conciseInsights}
               </div>
             </div>
 
-            <div className="space-y-3">
-              <h4 className="flex items-center font-headline text-lg text-primary">
-                <Zap className="w-5 h-5 mr-2" />
-                Next Steps Recommendations
+            <div className="space-y-4">
+              <h4 className="flex items-center font-headline text-xl text-foreground">
+                <Zap className="w-5 h-5 mr-3 text-primary" />
+                Actionable Recommendations
               </h4>
-              <div className="bg-primary/5 p-4 rounded-lg text-sm font-body border-l-2 border-primary">
+              <div className="bg-primary/5 p-6 rounded-2xl text-sm font-body border-l-4 border-primary">
                 {result.nextStepsRecommendations}
               </div>
             </div>
 
-            <Button onClick={() => setResult(null)} variant="outline" className="w-full">
+            <Button onClick={() => setResult(null)} variant="outline" className="w-full h-12 rounded-xl border-foreground/10 hover:bg-background">
               Analyze Another Lead
             </Button>
           </div>
