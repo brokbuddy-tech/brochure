@@ -77,22 +77,22 @@ export function BrochureTransformation() {
             onMouseEnter={() => setIsChaosHovered(true)}
             onMouseLeave={() => setIsChaosHovered(false)}
           >
-            <div className="absolute inset-0 bg-red-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-red-500/[0.05] rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative z-10 w-full h-full">
               {chaosItems.map((item, idx) => (
                 <motion.div
                   key={item.id}
                   className={cn(
-                    "absolute w-16 h-16 bg-red-50/10 border border-slate-200 rounded-xl shadow-sm flex items-center justify-center transition-all duration-300",
-                    animationStep === 0 ? "opacity-40 blur-[1px]" : "opacity-0 blur-md"
+                    "absolute w-16 h-16 bg-red-50/40 border border-red-100 rounded-xl shadow-md flex items-center justify-center transition-all duration-300",
+                    animationStep === 0 ? "opacity-100" : "opacity-0 blur-md"
                   )}
                   initial={{ x: item.x, y: item.y, rotate: item.rotate, opacity: 0 }}
                   animate={animationStep === 0 ? {
                     x: isChaosHovered ? item.x * 1.3 : [item.x, item.x + 10, item.x - 5, item.x],
                     y: isChaosHovered ? item.y * 1.3 : [item.y, item.y - 10, item.y + 5, item.y],
                     rotate: isChaosHovered ? item.rotate * 1.5 : item.rotate,
-                    opacity: 0.4,
+                    opacity: 1,
                     transition: isChaosHovered ? { duration: 0.4 } : { duration: 8, repeat: Infinity, ease: "linear" }
                   } : {
                     x: 100,
@@ -104,7 +104,7 @@ export function BrochureTransformation() {
                   }}
                   style={{ left: '50%', top: '50%', marginLeft: '-32px', marginTop: '-32px' }}
                 >
-                  <item.icon className="w-6 h-6 text-slate-400/50" />
+                  <item.icon className="w-6 h-6 text-red-500" />
                 </motion.div>
               ))}
               
@@ -112,7 +112,7 @@ export function BrochureTransformation() {
                 className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
                 animate={{ opacity: animationStep === 0 ? 1 : 0 }}
               >
-                <div className="mt-32 text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400">Fragmented Data</div>
+                <div className="mt-32 text-[10px] uppercase tracking-[0.3em] font-bold text-red-600/60">Fragmented Data</div>
               </motion.div>
             </div>
           </div>
@@ -185,16 +185,16 @@ export function BrochureTransformation() {
             onMouseEnter={() => setIsStructureHovered(true)}
             onMouseLeave={() => setIsStructureHovered(false)}
           >
-            <div className="absolute inset-0 bg-indigo-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-indigo-500/[0.05] rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative z-10 w-full h-full grid grid-cols-2 gap-3 p-8">
               {structuredItems.map((item, idx) => (
                 <motion.div
                   key={item.id}
                   className={cn(
-                    "w-full aspect-square bg-white border rounded-xl flex items-center justify-center transition-all duration-700",
+                    "w-full aspect-square bg-white border rounded-xl flex items-center justify-center transition-all duration-700 shadow-md",
                     animationStep === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
-                    isStructureHovered ? "border-indigo-300 shadow-[0_20px_40px_rgba(99,102,241,0.2)] -translate-y-1.5 scale-[1.02]" : "border-slate-100 shadow-sm"
+                    isStructureHovered ? "border-indigo-400 shadow-[0_20px_40px_rgba(99,102,241,0.25)] -translate-y-1.5 scale-[1.05]" : "border-slate-100"
                   )}
                   style={{ transitionDelay: animationStep === 2 ? `${idx * 100}ms` : '0ms' }}
                   animate={animationStep === 2 ? {
@@ -203,7 +203,7 @@ export function BrochureTransformation() {
                   } : {}}
                 >
                   <item.icon className={cn(
-                    "w-6 h-6 transition-colors duration-500",
+                    "w-7 h-7 transition-colors duration-500",
                     animationStep === 2 ? "text-indigo-600" : "text-slate-200"
                   )} />
                 </motion.div>
