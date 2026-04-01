@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -5,6 +6,7 @@ import { Header } from '@/components/Header';
 import { FloatingNode } from '@/components/FloatingNode';
 import { ROISlider } from '@/components/ROISlider';
 import { Button } from '@/components/ui/button';
+import { LeadInsightPanel } from '@/components/LeadInsightPanel';
 
 export default function Home() {
   return (
@@ -76,10 +78,8 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center space-y-4">
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-body text-sm font-bold tracking-[0.3em] px-12 py-8 rounded-full shadow-2xl transition-all duration-500 animate-pulse-soft uppercase">
-            Book a Discovery Call
-          </Button>
+        <div className="flex flex-col items-center space-y-4 w-full max-w-md">
+          <LeadInsightPanel />
           <p className="text-[10px] uppercase tracking-[0.2em] text-foreground/40 font-semibold">
             Enterprise solutions from AUD 199/mo <span className="text-primary/50 ml-2">•</span> Includes 2 broker seats
           </p>

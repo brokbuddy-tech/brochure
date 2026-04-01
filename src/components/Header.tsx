@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { EliteNetworkDrawer } from './EliteNetworkDrawer';
 
 export function Header() {
   return (
@@ -24,10 +26,15 @@ export function Header() {
         <span className="text-xl font-headline tracking-[0.2em] uppercase text-foreground/90">BrokBuddy</span>
       </div>
       
-      <div className="flex items-center space-x-8 text-[11px] uppercase tracking-[0.15em] font-body text-foreground/60">
-        <a href="mailto:info@brokbuddy.com" className="hover:text-foreground transition-colors">info@brokbuddy.com</a>
-        <span className="opacity-30">|</span>
-        <a href="tel:+919311899430" className="hover:text-foreground transition-colors">+91 9311899430</a>
+      <div className="flex items-center space-x-8">
+        <div className="hidden lg:block">
+          <EliteNetworkDrawer />
+        </div>
+        <div className="flex items-center space-x-8 text-[11px] uppercase tracking-[0.15em] font-body text-foreground/60">
+          <a href="mailto:info@brokbuddy.com" className="hover:text-foreground transition-colors">info@brokbuddy.com</a>
+          <span className="opacity-30">|</span>
+          <a href="tel:+919311899430" className="hover:text-foreground transition-colors">+91 9311899430</a>
+        </div>
       </div>
     </nav>
   );
