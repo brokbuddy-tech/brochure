@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { RefreshCw, FileText, Users, DollarSign, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const chaosItems = [
-  { id: 1, icon: FileText, x: -40, y: -30, rotate: -15, delay: 0 },
-  { id: 2, icon: Users, x: -60, y: 40, rotate: 12, delay: 0.1 },
-  { id: 3, icon: DollarSign, x: -20, y: 60, rotate: -8, delay: 0.2 },
-  { id: 4, icon: Home, x: -80, y: -10, rotate: 20, delay: 0.3 },
+  { id: 1, icon: FileText, x: -80, y: -60, rotate: -15, delay: 0 },
+  { id: 2, icon: Users, x: -100, y: 40, rotate: 12, delay: 0.1 },
+  { id: 3, icon: DollarSign, x: -40, y: 80, rotate: -8, delay: 0.2 },
+  { id: 4, icon: Home, x: -120, y: -10, rotate: 20, delay: 0.3 },
 ];
 
 const structuredItems = [
@@ -20,6 +21,7 @@ const structuredItems = [
 ];
 
 export function BrochureTransformation() {
+  const isMobile = useIsMobile();
   const [isChaosHovered, setIsChaosHovered] = useState(false);
   const [isStructureHovered, setIsStructureHovered] = useState(false);
   const [animationStep, setAnimationStep] = useState(0); // 0: Chaos, 1: Transforming, 2: Structured
@@ -27,20 +29,25 @@ export function BrochureTransformation() {
   const containerRef = React.useRef(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.3 });
 
+  const premiumEasing = [0.22, 1, 0.36, 1];
+
   useEffect(() => {
     if (isInView) {
       const sequence = async () => {
+        // Step 1: Chaos fades in & drifts
         setAnimationStep(0);
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 1200));
+        
+        // Step 2: Pulled to center (Transformation start)
         setAnimationStep(1);
-        await new Promise(r => setTimeout(r, 1500));
+        await new Promise(r => setTimeout(r, 1600));
+        
+        // Step 3: Snap into structure
         setAnimationStep(2);
       };
       sequence();
     }
   }, [isInView]);
-
-  const premiumEasing = [0.22, 1, 0.36, 1];
 
   return (
     <section ref={containerRef} className="py-32 lg:py-48 bg-white text-black text-center px-6 overflow-hidden min-h-[80vh] flex flex-col justify-center">
@@ -54,9 +61,9 @@ export function BrochureTransformation() {
           What if your entire business ran on <br className="hidden md:block" />
           <motion.span 
             className="italic text-indigo-600 inline-block"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.4, type: "spring", stiffness: 100 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ delay: 1, duration: 0.6, ease: premiumEasing }}
           >
             ONE system?
           </motion.span>
@@ -70,32 +77,34 @@ export function BrochureTransformation() {
             onMouseEnter={() => setIsChaosHovered(true)}
             onMouseLeave={() => setIsChaosHovered(false)}
           >
-            <div className="absolute inset-0 bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-red-500/[0.03] rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative z-10 w-full h-full">
               {chaosItems.map((item, idx) => (
                 <motion.div
                   key={item.id}
                   className={cn(
-                    "absolute w-16 h-16 bg-white border border-slate-200 rounded-xl shadow-md flex items-center justify-center transition-all duration-300",
-                    animationStep === 0 ? "opacity-60 blur-[1px]" : "opacity-0 blur-lg"
+                    "absolute w-16 h-16 bg-red-50/10 border border-slate-200 rounded-xl shadow-sm flex items-center justify-center transition-all duration-300",
+                    animationStep === 0 ? "opacity-40 blur-[1px]" : "opacity-0 blur-md"
                   )}
-                  initial={{ x: item.x, y: item.y, rotate: item.rotate }}
+                  initial={{ x: item.x, y: item.y, rotate: item.rotate, opacity: 0 }}
                   animate={animationStep === 0 ? {
-                    x: isChaosHovered ? item.x * 1.5 : item.x,
-                    y: isChaosHovered ? item.y * 1.5 : item.y,
-                    rotate: isChaosHovered ? item.rotate * 2 : item.rotate,
-                    transition: { duration: 0.4, ease: "easeOut" }
+                    x: isChaosHovered ? item.x * 1.3 : [item.x, item.x + 10, item.x - 5, item.x],
+                    y: isChaosHovered ? item.y * 1.3 : [item.y, item.y - 10, item.y + 5, item.y],
+                    rotate: isChaosHovered ? item.rotate * 1.5 : item.rotate,
+                    opacity: 0.4,
+                    transition: isChaosHovered ? { duration: 0.4 } : { duration: 8, repeat: Infinity, ease: "linear" }
                   } : {
-                    x: 100, // Move towards center
+                    x: 100,
                     y: 0,
-                    scale: 0.5,
+                    scale: 0.8,
+                    rotate: 0,
                     opacity: 0,
-                    transition: { duration: 0.6, delay: item.delay, ease: premiumEasing }
+                    transition: { duration: 0.8, delay: item.delay, ease: premiumEasing }
                   }}
                   style={{ left: '50%', top: '50%', marginLeft: '-32px', marginTop: '-32px' }}
                 >
-                  <item.icon className="w-6 h-6 text-red-400" />
+                  <item.icon className="w-6 h-6 text-slate-400/50" />
                 </motion.div>
               ))}
               
@@ -103,29 +112,29 @@ export function BrochureTransformation() {
                 className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
                 animate={{ opacity: animationStep === 0 ? 1 : 0 }}
               >
-                <div className="mt-24 text-[10px] uppercase tracking-[0.3em] font-bold text-red-500/40">Fragmented Data</div>
+                <div className="mt-32 text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400">Fragmented Data</div>
               </motion.div>
             </div>
           </div>
 
           {/* Transformation Engine (Center) */}
           <div className="relative flex flex-col items-center justify-center order-2 lg:order-none">
-            {/* Outer Rotating Ring */}
+            {/* Outer Rotating Rings */}
             <motion.div 
-              className="absolute w-40 h-40 lg:w-48 lg:h-48 border-[1px] border-indigo-200 rounded-full"
+              className="absolute w-40 h-40 lg:w-48 lg:h-48 border-[1px] border-indigo-100 rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
             />
             <motion.div 
-              className="absolute w-40 h-40 lg:w-48 lg:h-48 border-t-2 border-indigo-500 rounded-full"
-              animate={{ rotate: animationStep === 1 ? [0, 720] : 0 }}
-              transition={{ duration: 1.5, ease: premiumEasing }}
+              className="absolute w-40 h-40 lg:w-48 lg:h-48 border-t-2 border-indigo-400/30 rounded-full"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             />
 
             <motion.div 
               className={cn(
-                "relative z-20 w-24 h-24 lg:w-32 lg:h-32 bg-indigo-600 rounded-3xl shadow-2xl flex items-center justify-center transition-transform duration-500",
-                animationStep === 1 ? "scale-110" : "scale-100"
+                "relative z-20 w-24 h-24 lg:w-32 lg:h-32 bg-indigo-600 rounded-3xl shadow-[0_10px_30px_rgba(99,102,241,0.4)] flex items-center justify-center transition-all duration-700",
+                animationStep === 1 ? "scale-110 shadow-[0_20px_50px_rgba(99,102,241,0.6)]" : "scale-100"
               )}
             >
               <div className="absolute inset-0 bg-indigo-400/20 rounded-3xl animate-ping" />
@@ -155,6 +164,18 @@ export function BrochureTransformation() {
                   </motion.div>
                 )}
               </AnimatePresence>
+
+              {/* Light Sweep */}
+              <motion.div 
+                className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none"
+                animate={animationStep === 1 ? { opacity: 1 } : { opacity: 0 }}
+              >
+                <motion.div 
+                  className="w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
+                  animate={{ x: ['-100%', '200%'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                />
+              </motion.div>
             </motion.div>
           </div>
 
@@ -164,19 +185,22 @@ export function BrochureTransformation() {
             onMouseEnter={() => setIsStructureHovered(true)}
             onMouseLeave={() => setIsStructureHovered(false)}
           >
-            <div className="absolute inset-0 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-indigo-500/[0.03] rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative z-10 w-full h-full grid grid-cols-2 gap-3 p-8">
               {structuredItems.map((item, idx) => (
                 <motion.div
                   key={item.id}
                   className={cn(
-                    "w-full aspect-square bg-white border rounded-xl shadow-sm flex items-center justify-center transition-all duration-700",
+                    "w-full aspect-square bg-white border rounded-xl flex items-center justify-center transition-all duration-700",
                     animationStep === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
-                    isStructureHovered ? "border-indigo-300 shadow-indigo-100 -translate-y-1" : "border-slate-100"
+                    isStructureHovered ? "border-indigo-300 shadow-[0_20px_40px_rgba(99,102,241,0.2)] -translate-y-1.5 scale-[1.02]" : "border-slate-100 shadow-sm"
                   )}
-                  style={{ transitionDelay: `${idx * 100}ms` }}
-                  whileHover={{ scale: 1.05 }}
+                  style={{ transitionDelay: animationStep === 2 ? `${idx * 100}ms` : '0ms' }}
+                  animate={animationStep === 2 ? {
+                    scale: [0.95, 1.05, 1],
+                    transition: { duration: 0.6, delay: idx * 0.1, ease: premiumEasing }
+                  } : {}}
                 >
                   <item.icon className={cn(
                     "w-6 h-6 transition-colors duration-500",
@@ -195,7 +219,7 @@ export function BrochureTransformation() {
           </div>
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-6">
           <motion.p 
             className="text-2xl md:text-3xl font-headline max-w-2xl mx-auto text-black/80"
             initial={{ opacity: 0 }}
@@ -204,14 +228,18 @@ export function BrochureTransformation() {
           >
             BrokBuddy replaces chaos with structure, giving you absolute control over your growth.
           </motion.p>
-          <motion.p 
-            className="text-xs font-body text-slate-400 uppercase tracking-widest font-semibold"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+          
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
+            className="flex flex-col items-center space-y-2"
           >
-            This is what BrokBuddy does.
-          </motion.p>
+            <p className="text-xs font-body text-slate-400 uppercase tracking-widest font-semibold">
+              This is what BrokBuddy does.
+            </p>
+            <div className="w-8 h-px bg-slate-200" />
+          </motion.div>
         </div>
       </div>
     </section>
