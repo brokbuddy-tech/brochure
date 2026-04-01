@@ -1,4 +1,3 @@
-
 export interface LeadProfile {
   id: string;
   name: string;
@@ -114,6 +113,46 @@ export const ELITE_LEADS: LeadProfile[] = [
     personnel: ['Adelaide Hills Team'],
     category: 'Boutique',
     insight: 'Luxury-focused digital transformation demographic.',
+    stats: {}
+  },
+  {
+    id: '11',
+    name: 'Jess Adams',
+    location: 'Albany & Denmark, WA',
+    performance: 'Independent Operator (@realty)',
+    personnel: ['Jess Adams'],
+    category: 'Aggregator',
+    insight: 'Digital-first marketing focus. Prime candidate for a personal white-labeled brand to break free from network dependency.',
+    stats: {}
+  },
+  {
+    id: '12',
+    name: 'Clyde Lin',
+    location: 'Broadbeach, QLD',
+    performance: 'High-value portfolio specialist',
+    personnel: ['Clyde Lin'],
+    category: 'Aggregator',
+    insight: 'Experienced veteran managing luxury Gold Coast assets. Craves independent branding with zero overhead.',
+    stats: { medianPrice: '$838k+' }
+  },
+  {
+    id: '13',
+    name: 'Greg Pratt',
+    location: 'Central Coast, NSW',
+    performance: '$58M+ sales since 2020',
+    personnel: ['Greg Pratt'],
+    category: 'Aggregator',
+    insight: 'Highly cost-sensitive entrepreneur. Receptive to "Business-in-a-Box" solutions that offer premium value.',
+    stats: { totalValue: '$58M+' }
+  },
+  {
+    id: '14',
+    name: 'Mark Ward',
+    location: 'Salisbury, QLD',
+    performance: '#1 Market Leader in Salisbury',
+    personnel: ['Mark Ward'],
+    category: 'Boutique',
+    insight: 'Dominant local powerhouse. Needs enterprise-grade tools to defend market share against corporate franchises.',
     stats: {}
   },
   {

@@ -39,8 +39,8 @@ export function LeadInsightPanel() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-headline py-6 text-lg tracking-wider transition-all duration-300 glow-primary">
-          EXPERIENCE THE FUTURE
+        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-headline py-7 text-xl tracking-[0.1em] transition-all duration-500 glow-primary animate-pulse-soft uppercase shadow-2xl rounded-full">
+          BOOK A DISCOVERY CALL
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] bg-card border-primary/20 max-h-[90vh] overflow-y-auto">
