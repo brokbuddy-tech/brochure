@@ -4,26 +4,26 @@
 
 @layer base {
   :root {
-    --background: 30 8% 15%; /* #2E2B27 */
-    --foreground: 0 0% 94%; /* #F0F0F0 */
-    --card: 30 8% 12%;
-    --card-foreground: 0 0% 94%;
-    --popover: 30 8% 10%;
-    --popover-foreground: 0 0% 94%;
-    --primary: 43 63% 64%; /* #DEBE6A - Champagne Gold */
-    --primary-foreground: 30 8% 10%;
-    --secondary: 17 65% 42%; /* #B34D26 - Rich Terracotta */
-    --secondary-foreground: 0 0% 94%;
-    --muted: 30 5% 25%;
-    --muted-foreground: 0 0% 70%;
+    --background: 30 15% 97%; /* Pearl White / Alabaster */
+    --foreground: 0 0% 18%; /* Deep Slate Grey */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 18%;
+    --primary: 43 63% 64%; /* Champagne Gold */
+    --primary-foreground: 30 15% 97%;
+    --secondary: 145 15% 45%; /* Soft Sage Green */
+    --secondary-foreground: 30 15% 97%;
+    --muted: 30 10% 90%;
+    --muted-foreground: 0 0% 40%;
     --accent: 43 63% 64%;
-    --accent-foreground: 30 8% 10%;
+    --accent-foreground: 30 15% 97%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 30 8% 25%;
-    --input: 30 8% 25%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
     --ring: 43 63% 64%;
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -34,31 +34,36 @@
   body {
     @apply bg-background text-foreground font-body overflow-hidden h-screen w-screen selection:bg-primary/30;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-headline;
-  }
 }
 
-.perspective-1000 {
-  perspective: 1000px;
+.font-headline {
+  font-family: 'Playfair Display', serif;
 }
 
-.preserve-3d {
-  transform-style: preserve-3d;
+.font-body {
+  font-family: 'Inter', sans-serif;
 }
 
-.backface-hidden {
-  backface-visibility: hidden;
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.03); opacity: 0.95; }
 }
 
-.rotate-y-180 {
-  transform: rotateY(180deg);
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out;
 }
 
-.glow-primary {
-  box-shadow: 0 0 15px rgba(222, 190, 106, 0.3);
+.bg-gradient-breathing {
+  background: radial-gradient(circle at 50% 50%, rgba(222, 190, 106, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(145, 175, 155, 0.05) 0%, transparent 40%);
+  animation: gradient-move 15s infinite alternate ease-in-out;
 }
 
-.glow-primary:hover {
-  box-shadow: 0 0 25px rgba(222, 190, 106, 0.6);
+@keyframes gradient-move {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.1) translate(2%, 2%); }
+}
+
+.frosted-pill {
+  @apply bg-white/40 backdrop-blur-md border border-white/40 shadow-sm hover:shadow-lg transition-all duration-500 ease-in-out;
 }
