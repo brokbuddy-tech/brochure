@@ -113,7 +113,7 @@ export function BrochureHero() {
                 </div>
 
                 {/* Animated State Container */}
-                <div className="relative min-h-[280px] md:h-64 overflow-hidden">
+                <div className="relative min-h-[220px] md:min-h-[280px] md:h-64 overflow-hidden">
                   <AnimatePresence mode="wait">
                     {activeStep === 0 && (
                       <motion.div
@@ -121,19 +121,19 @@ export function BrochureHero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.05 }}
-                        className="p-4 md:p-8 border-2 border-dashed border-slate-100 rounded-2xl md:rounded-3xl flex flex-col items-center justify-center text-center space-y-4 h-full"
+                        className="p-4 md:p-8 border-2 border-dashed border-slate-100 rounded-2xl md:rounded-3xl flex flex-col items-center justify-center text-center space-y-2 md:space-y-4 h-full"
                       >
                         <div className="p-3 md:p-4 bg-slate-50 rounded-full">
                           <Building2 className="w-6 h-6 md:w-8 md:h-8 text-slate-300" />
                         </div>
-                        <div className="space-y-2">
+                        <div className="space-y-1 md:space-y-2">
                           <p className="text-xs md:text-sm font-bold text-slate-400">Add New Property</p>
-                          <div className="flex items-center space-x-2 text-primary">
+                          <div className="flex items-center justify-center space-x-2 text-primary">
                             <motion.span
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               transition={{ duration: 1 }}
-                              className="text-sm md:text-lg font-bold"
+                              className="text-xs md:text-lg font-bold"
                             >
                               25 Bondi Beach Road, NSW
                             </motion.span>
@@ -148,32 +148,32 @@ export function BrochureHero() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 h-full"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 h-full"
                       >
-                        <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl space-y-4 flex flex-col justify-center">
+                        <div className="p-3 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl space-y-2 md:space-y-4 flex flex-col justify-center">
                           <div className="h-3 md:h-4 w-1/2 bg-slate-200 rounded" />
-                          <div className="space-y-2">
+                          <div className="space-y-1.5 md:space-y-2">
                             {[1, 2, 3, 4].map(i => (
                               <motion.div 
                                 key={i}
                                 initial={{ width: 0 }}
                                 animate={{ width: "100%" }}
                                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                                className="h-1.5 md:h-2 bg-slate-200 rounded" 
+                                className="h-1 md:h-2 bg-slate-200 rounded" 
                               />
                             ))}
                           </div>
                         </div>
-                        <div className="p-4 md:p-6 bg-primary/5 border border-primary/20 rounded-2xl md:rounded-3xl flex flex-col justify-center text-center">
-                          <div className="flex items-center justify-center space-x-2 text-primary mb-2">
+                        <div className="p-3 md:p-6 bg-primary/5 border border-primary/20 rounded-2xl md:rounded-3xl flex flex-col justify-center text-center">
+                          <div className="flex items-center justify-center space-x-2 text-primary mb-1 md:mb-2">
                             <Sparkles className="w-3 h-3 md:w-4 md:h-4" />
-                            <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest">AI Listing Agent</span>
+                            <span className="text-[7px] md:text-[10px] font-bold uppercase tracking-widest">AI Listing Agent</span>
                           </div>
                           <motion.div 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1 }}
-                            className="text-xs md:text-sm font-headline italic text-primary leading-relaxed"
+                            className="text-[10px] md:text-sm font-headline italic text-primary leading-tight md:leading-relaxed"
                           >
                             "AI generates listings instantly."
                           </motion.div>
@@ -187,13 +187,13 @@ export function BrochureHero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="space-y-4 h-full"
+                        className="space-y-2 md:space-y-4 h-full"
                       >
                         <div className="flex items-center justify-between px-2">
-                          <p className="text-[8px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Incoming Enquiries</p>
+                          <p className="text-[7px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Incoming Enquiries</p>
                           <div className="h-2 w-2 md:h-4 md:w-4 bg-primary rounded-full animate-ping" />
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-4">
                           {[
                             { name: "John Smith", type: "Buyer", score: 94 },
                             { name: "Sarah Chen", type: "Investor", score: 88 },
@@ -204,20 +204,20 @@ export function BrochureHero() {
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: i * 0.1 }}
-                              className="p-3 md:p-4 bg-white border border-slate-100 rounded-xl md:rounded-2xl shadow-sm h-[80px] md:h-[120px] flex flex-col justify-between"
+                              className="p-2 md:p-4 bg-white border border-slate-100 rounded-xl md:rounded-2xl shadow-sm h-[50px] md:h-[120px] flex flex-col justify-between"
                             >
-                              <div className="flex items-center space-x-3">
-                                <div className="w-6 h-6 md:w-8 md:h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0">
-                                  <User className="w-3 h-3 md:w-4 md:h-4 text-slate-400" />
+                              <div className="flex items-center space-x-2 md:space-x-3">
+                                <div className="w-5 h-5 md:w-8 md:h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0">
+                                  <User className="w-2.5 h-2.5 md:w-4 md:h-4 text-slate-400" />
                                 </div>
                                 <div className="text-left overflow-hidden">
-                                  <p className="text-[8px] md:text-[10px] font-bold truncate">{lead.name}</p>
-                                  <p className="text-[6px] md:text-[8px] text-slate-400 truncate">{lead.type}</p>
+                                  <p className="text-[7px] md:text-[10px] font-bold truncate">{lead.name}</p>
+                                  <p className="text-[5px] md:text-[8px] text-slate-400 truncate">{lead.type}</p>
                                 </div>
                               </div>
-                              <div className="flex items-center justify-between border-t border-slate-50 pt-1.5 md:pt-2">
-                                <span className="text-[6px] md:text-[8px] font-bold text-primary">LQS</span>
-                                <span className="text-[8px] md:text-[10px] font-headline text-primary">{lead.score}</span>
+                              <div className="flex items-center justify-between border-t border-slate-50 pt-1 md:pt-2">
+                                <span className="text-[5px] md:text-[8px] font-bold text-primary">LQS</span>
+                                <span className="text-[7px] md:text-[10px] font-headline text-primary">{lead.score}</span>
                               </div>
                             </motion.div>
                           ))}
@@ -231,12 +231,12 @@ export function BrochureHero() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
-                        className="space-y-6 h-full"
+                        className="space-y-4 md:space-y-6 h-full"
                       >
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-full">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 h-full">
                           {["Appraisal", "Listing", "Negotiation", "Settlement"].map((stage, i) => (
-                            <div key={i} className="space-y-2 md:space-y-3">
-                              <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 truncate">{stage}</p>
+                            <div key={i} className="space-y-1.5 md:space-y-3">
+                              <p className="text-[7px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 truncate">{stage}</p>
                               <div className="h-[1px] md:h-[2px] w-full bg-slate-50" />
                               {i === 2 && (
                                 <motion.div
@@ -244,10 +244,10 @@ export function BrochureHero() {
                                   animate={{ x: 0, opacity: 1 }}
                                   className="p-2 md:p-4 bg-white border border-primary/20 rounded-lg md:rounded-xl shadow-lg shadow-primary/5"
                                 >
-                                  <p className="text-[8px] md:text-[10px] font-bold truncate text-[#111827]">25 Bondi Beach</p>
+                                  <p className="text-[7px] md:text-[10px] font-bold truncate text-[#111827]">25 Bondi Beach</p>
                                   <div className="mt-1 md:mt-2 flex items-center justify-between">
-                                    <div className="h-1 w-8 md:h-1.5 md:w-12 bg-slate-100 rounded" />
-                                    <TrendingUp className="w-2.5 h-2.5 md:w-3 md:h-3 text-primary" />
+                                    <div className="h-0.5 md:h-1.5 w-6 md:w-12 bg-slate-100 rounded" />
+                                    <TrendingUp className="w-2 md:w-3 md:h-3 text-primary" />
                                   </div>
                                 </motion.div>
                               )}
@@ -262,14 +262,14 @@ export function BrochureHero() {
             </div>
 
             {/* Step Indicators Footer */}
-            <div className="min-h-[64px] py-4 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-center gap-x-6 md:gap-x-12 px-4 text-[#111827]">
+            <div className="min-h-[48px] md:min-h-[64px] py-3 md:py-4 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-center gap-x-4 md:gap-x-12 px-4 text-[#111827]">
               {STEPS.map((step, idx) => (
                 <div 
                   key={step.id} 
-                  className={`flex items-center space-x-2 md:space-x-3 transition-opacity duration-500 ${idx === activeStep ? 'opacity-100' : 'opacity-30'}`}
+                  className={`flex items-center space-x-1.5 md:space-x-3 transition-opacity duration-500 ${idx === activeStep ? 'opacity-100' : 'opacity-30'}`}
                 >
-                  <div className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${idx === activeStep ? 'bg-primary' : 'bg-slate-300'}`} />
-                  <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">{step.label}</span>
+                  <div className={`w-1 md:w-2 h-1 md:h-2 rounded-full ${idx === activeStep ? 'bg-primary' : 'bg-slate-300'}`} />
+                  <span className="text-[7px] md:text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">{step.label}</span>
                 </div>
               ))}
             </div>
