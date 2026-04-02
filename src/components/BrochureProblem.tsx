@@ -49,7 +49,7 @@ export function BrochureProblem() {
             className="object-cover opacity-90"
             data-ai-hint={bgImage.imageHint}
           />
-          {/* Subtle vignette for edge transition only, removing the heavy white layer */}
+          {/* Subtle vignette for edge transition only */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/10" />
         </div>
       )}
@@ -66,9 +66,9 @@ export function BrochureProblem() {
 
         {/* Desktop Orbital Layout */}
         <div className="hidden lg:block relative h-[700px] w-full max-w-[1000px] mx-auto">
-          {/* Central Anchor Card */}
+          {/* Central Anchor Card (Glass Morph) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="w-[200px] h-[200px] rounded-full bg-white/95 backdrop-blur-sm border-2 border-[#4A90E2]/30 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
+            <div className="w-[200px] h-[200px] rounded-full bg-white/80 backdrop-blur-xl border-2 border-white/40 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
               <p className="text-lg md:text-xl font-headline italic text-[#4A90E2] leading-tight">
                 Does this sound like your agency?
               </p>
@@ -93,7 +93,7 @@ export function BrochureProblem() {
                     {/* Layer 2: Counter-rotate the static initial angle offset to keep text upright */}
                     <div 
                       style={{ transform: `rotate(-${angle}deg)` }}
-                      className="w-[280px] h-[280px] p-8 rounded-full bg-white/90 backdrop-blur-md border border-[#263238]/10 hover:border-[#FF8A00]/60 shadow-2xl transition-all duration-500 group flex flex-col items-center justify-center text-center"
+                      className="w-[280px] h-[280px] p-8 rounded-full bg-white/70 backdrop-blur-xl border border-white/40 hover:border-[#FF8A00]/60 shadow-2xl transition-all duration-500 group flex flex-col items-center justify-center text-center"
                     >
                       <div className="w-16 h-16 rounded-2xl bg-[#FF8A00]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <prob.icon className="w-8 h-8 text-[#FF8A00]" />
@@ -110,12 +110,12 @@ export function BrochureProblem() {
           </div>
         </div>
 
-        {/* Mobile/Tablet Stacked Layout */}
+        {/* Mobile/Tablet Stacked Layout (Glass Morph) */}
         <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
           {PROBLEMS.map((prob, idx) => (
             <div 
               key={idx} 
-              className="p-10 rounded-3xl bg-white/90 backdrop-blur-sm border border-[#263238]/10 shadow-lg flex flex-col items-center text-center group"
+              className="p-10 rounded-3xl bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg flex flex-col items-center text-center group"
             >
               <div className="w-14 h-14 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-6">
                 <prob.icon className="w-7 h-7 text-[#FF8A00]" />
@@ -125,7 +125,7 @@ export function BrochureProblem() {
             </div>
           ))}
           
-          <div className="p-10 rounded-3xl bg-white/95 backdrop-blur-sm border-2 border-[#4A90E2]/30 flex flex-col items-center justify-center text-center shadow-xl md:col-span-2">
+          <div className="p-10 rounded-3xl bg-white/80 backdrop-blur-xl border-2 border-white/40 flex flex-col items-center justify-center text-center shadow-xl md:col-span-2">
             <p className="text-2xl font-headline italic text-[#4A90E2]">Does this sound like your agency?</p>
           </div>
         </div>
