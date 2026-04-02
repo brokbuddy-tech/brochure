@@ -132,7 +132,7 @@ export function BrochureProblem() {
                 backgroundColor: "#ffffff",
                 borderColor: "#d1d5db",
                 boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
-                zIndex: 30
+                zIndex: 10
               }}
               className="absolute z-10 w-[280px] h-[280px] p-8 bg-white/40 backdrop-blur-sm border border-slate-200 rounded-full transition-all duration-500 group cursor-default flex flex-col items-center justify-center text-center"
             >
