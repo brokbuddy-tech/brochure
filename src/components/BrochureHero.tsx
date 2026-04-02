@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, Sparkles, User, Building2, TrendingUp } from 'lucide-react';
+import { ArrowRight, Building2, TrendingUp, Sparkles, User } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -19,7 +19,7 @@ export function BrochureHero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % STEPS.length);
-    }, 2500);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
@@ -111,7 +111,7 @@ export function BrochureHero() {
                   </div>
                 </div>
 
-                {/* Animated State Container - Standardized Height to prevent jumps */}
+                {/* Animated State Container - Standardized Height */}
                 <div className="relative h-64 overflow-hidden">
                   <AnimatePresence mode="wait">
                     {activeStep === 0 && (
@@ -163,8 +163,8 @@ export function BrochureHero() {
                             ))}
                           </div>
                         </div>
-                        <div className="p-6 bg-primary/5 border border-primary/20 rounded-3xl space-y-4">
-                          <div className="flex items-center space-x-2 text-primary">
+                        <div className="p-6 bg-primary/5 border border-primary/20 rounded-3xl space-y-4 flex flex-col justify-center">
+                          <div className="flex items-center space-x-2 text-primary mb-2">
                             <Sparkles className="w-4 h-4" />
                             <span className="text-[10px] font-bold uppercase tracking-widest">AI Listing Agent</span>
                           </div>
@@ -174,7 +174,7 @@ export function BrochureHero() {
                             transition={{ duration: 1 }}
                             className="text-sm font-headline italic text-primary leading-relaxed"
                           >
-                            "Experience unparalleled luxury at this coastal masterpiece. Featuring panoramic Pacific views and master-crafted interiors..."
+                            "AI creates ready-to-publish listings instantly."
                           </motion.div>
                         </div>
                       </motion.div>
@@ -203,9 +203,9 @@ export function BrochureHero() {
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: i * 0.1 }}
-                              className="p-4 bg-white border border-slate-100 rounded-2xl shadow-sm"
+                              className="p-4 bg-white border border-slate-100 rounded-2xl shadow-sm h-[120px] flex flex-col justify-between"
                             >
-                              <div className="flex items-center space-x-3 mb-3">
+                              <div className="flex items-center space-x-3">
                                 <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
                                   <User className="w-4 h-4 text-slate-400" />
                                 </div>
@@ -232,14 +232,14 @@ export function BrochureHero() {
                         exit={{ opacity: 0, x: 20 }}
                         className="space-y-6 h-full"
                       >
-                        <div className="grid grid-cols-4 gap-4">
+                        <div className="grid grid-cols-4 gap-4 h-full">
                           {["Appraisal", "Listing", "Negotiation", "Settlement"].map((stage, i) => (
                             <div key={i} className="space-y-3">
                               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">{stage}</p>
                               <div className="h-[2px] w-full bg-slate-50" />
                               {i === 2 && (
                                 <motion.div
-                                  initial={{ x: -100, opacity: 0 }}
+                                  initial={{ x: -50, opacity: 0 }}
                                   animate={{ x: 0, opacity: 1 }}
                                   className="p-4 bg-white border border-primary/20 rounded-xl shadow-lg shadow-primary/5"
                                 >
