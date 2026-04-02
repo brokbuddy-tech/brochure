@@ -35,7 +35,7 @@ const PROBLEMS = [
 
 export function BrochureProblem() {
   return (
-    <section className="py-24 px-6 bg-[#F4F7F9] text-[#263238] relative overflow-hidden min-h-[800px] flex flex-col items-center justify-center">
+    <section className="py-24 px-6 bg-[#F4F7F9] text-[#263238] relative overflow-hidden min-h-[900px] flex flex-col items-center justify-center">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="max-w-2xl mb-20 text-center mx-auto reveal">
           <h2 className="text-3xl md:text-5xl font-headline mb-6 text-[#003366]">
@@ -47,14 +47,14 @@ export function BrochureProblem() {
         </div>
 
         {/* Desktop Orbital Layout */}
-        <div className="hidden lg:block relative h-[600px] w-full max-w-[900px] mx-auto">
-          {/* Central Anchor Card */}
+        <div className="hidden lg:block relative h-[700px] w-full max-w-[1000px] mx-auto">
+          {/* Central Anchor Card - Decreased Size */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="w-[300px] h-[300px] rounded-full bg-white border-2 border-[#4A90E2]/20 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
-              <p className="text-2xl md:text-3xl font-headline italic text-[#4A90E2] leading-tight">
+            <div className="w-[240px] h-[240px] rounded-full bg-white border-2 border-[#4A90E2]/20 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
+              <p className="text-xl md:text-2xl font-headline italic text-[#4A90E2] leading-tight">
                 Does this sound like your agency?
               </p>
-              <div className="w-12 h-[2px] bg-[#4A90E2]/20 mt-6" />
+              <div className="w-10 h-[2px] bg-[#4A90E2]/20 mt-4" />
             </div>
           </div>
 
@@ -67,20 +67,20 @@ export function BrochureProblem() {
                   key={idx}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   style={{
-                    transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-320px)`
+                    transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-340px)`
                   }}
                 >
-                  {/* Counter-rotating child to keep text upright */}
+                  {/* Counter-rotating child - Increased Size */}
                   <div 
                     className="animate-counter-spin-slow"
                     style={{ transform: `rotate(-${angle}deg)` }}
                   >
-                    <div className="w-[200px] h-[200px] p-6 rounded-full bg-white border border-[#263238]/10 hover:border-[#FF8A00]/40 shadow-lg transition-all duration-500 group flex flex-col items-center justify-center text-center">
-                      <div className="w-10 h-10 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                        <prob.icon className="w-5 h-5 text-[#FF8A00]" />
+                    <div className="w-[260px] h-[260px] p-8 rounded-full bg-white border border-[#263238]/10 hover:border-[#FF8A00]/40 shadow-xl transition-all duration-500 group flex flex-col items-center justify-center text-center">
+                      <div className="w-12 h-12 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <prob.icon className="w-6 h-6 text-[#FF8A00]" />
                       </div>
-                      <h3 className="text-sm font-headline mb-2 text-[#003366] leading-tight">{prob.title}</h3>
-                      <p className="text-[10px] font-body text-[#263238]/60 leading-tight">
+                      <h3 className="text-base font-headline mb-3 text-[#003366] leading-tight px-2">{prob.title}</h3>
+                      <p className="text-xs font-body text-[#263238]/60 leading-relaxed px-4">
                         {prob.desc}
                       </p>
                     </div>
@@ -126,10 +126,10 @@ export function BrochureProblem() {
           to { transform: rotate(-360deg); }
         }
         .animate-spin-slow {
-          animation: spin-slow 40s linear infinite;
+          animation: spin-slow 50s linear infinite;
         }
         .animate-counter-spin-slow {
-          animation: counter-spin-slow 40s linear infinite;
+          animation: counter-spin-slow 50s linear infinite;
         }
       `}</style>
     </section>
