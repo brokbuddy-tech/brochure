@@ -16,31 +16,31 @@ const PROBLEMS = [
     icon: LayoutGrid,
     title: "Listings scattered",
     desc: "Managing listings across multiple portals slows everything down.",
-    x: -300, y: -140
+    x: -300, y: -220
   },
   {
     icon: EyeOff,
     title: "No deal visibility",
     desc: "You don’t know which deals are progressing or stuck.",
-    x: 300, y: -160
+    x: 300, y: -220
   },
   {
     icon: MessageSquareOff,
     title: "Manual follow-ups",
     desc: "Important conversations get missed or delayed.",
-    x: -340, y: 120
+    x: -340, y: 180
   },
   {
     icon: Database,
     title: "No centralized data",
     desc: "Your business data is spread across tools.",
-    x: 340, y: 140
+    x: 340, y: 180
   },
   {
     icon: BarChart,
     title: "Decisions based on guesswork",
     desc: "You lack real insights to scale confidently.",
-    x: 0, y: 260
+    x: 0, y: 340
   }
 ];
 
@@ -74,7 +74,7 @@ export function BrochureProblem() {
         </div>
 
         {/* Controlled Cluster (Desktop Only) */}
-        <div className="relative w-full h-[600px] flex items-center justify-center hidden md:flex">
+        <div className="relative w-full h-[800px] flex items-center justify-center hidden md:flex">
           
           {/* Faint Connectors (Lines) */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.05]">
