@@ -1,225 +1,192 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   PlusCircle, 
-  Cpu, 
-  Zap, 
-  FileCheck, 
+  Sparkles, 
   Target, 
-  LineChart, 
-  CheckCircle2,
-  RefreshCw
+  TrendingUp,
+  Check
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const premiumEasing = [0.22, 1, 0.36, 1];
 
-const OUTPUT_CARDS = [
-  { id: 'listing', icon: FileCheck, title: "Listing Created", desc: "AI-optimized copy & photos" },
-  { id: 'leads', icon: Target, title: "Leads Tracking", desc: "Active portal enquiry sync" },
-  { id: 'pipeline', icon: LineChart, title: "Pipeline Updated", desc: "Deal stage progression" },
-  { id: 'insights', icon: Zap, title: "Insights Ready", desc: "Market performance report" },
+const STEPS = [
+  {
+    id: '01',
+    icon: PlusCircle,
+    title: "Add Property",
+    desc: "Enter property details once"
+  },
+  {
+    id: '02',
+    icon: Sparkles,
+    title: "Auto Listing",
+    desc: "AI creates ready-to-publish listings"
+  },
+  {
+    id: '03',
+    icon: Target,
+    title: "Track Leads",
+    desc: "All enquiries in one place"
+  },
+  {
+    id: '04',
+    icon: TrendingUp,
+    title: "Close Deals",
+    desc: "Monitor pipeline & revenue in real time"
+  }
 ];
 
 export function BrochureTransformation() {
-  const [animationStep, setAnimationStep] = useState(0); // 0: Idle, 1: Compression, 2: Processing, 3: Flow, 4: Results
-  const containerRef = React.useRef(null);
-  const isInView = useInView(containerRef, { once: false, amount: 0.4 });
-
-  useEffect(() => {
-    if (isInView) {
-      const runSequence = async () => {
-        setAnimationStep(0);
-        await new Promise(r => setTimeout(r, 800));
-        setAnimationStep(1); // Compression
-        await new Promise(r => setTimeout(r, 1000));
-        setAnimationStep(2); // Processing
-        await new Promise(r => setTimeout(r, 1500));
-        setAnimationStep(3); // Flow
-        await new Promise(r => setTimeout(r, 800));
-        setAnimationStep(4); // Results
-      };
-      runSequence();
-    } else {
-      setAnimationStep(0);
-    }
-  }, [isInView]);
-
   return (
-    <section ref={containerRef} className="py-32 lg:py-48 bg-black text-white text-center px-6 overflow-hidden min-h-[90vh] flex flex-col justify-center relative">
-      <div className="max-w-7xl mx-auto space-y-16 w-full">
+    <section className="py-32 bg-slate-50 overflow-hidden relative border-y border-slate-200">
+      <div className="max-w-7xl mx-auto px-6">
         
-        <div className="space-y-4 reveal">
+        {/* Headline Section */}
+        <div className="text-center mb-24 space-y-4">
           <motion.h2 
-            className="text-4xl md:text-6xl font-headline tracking-tight leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: premiumEasing }}
+            className="text-4xl md:text-6xl font-headline text-slate-900 tracking-tight leading-tight"
           >
             What if your entire business ran on <br className="hidden md:block" />
-            <span className="italic text-indigo-400">ONE system?</span>
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-indigo-600 inline-block"
+            >
+              ONE
+            </motion.span> system?
           </motion.h2>
-          <p className="text-sm uppercase tracking-[0.4em] text-white/30 font-bold">Live Data Flow Experience</p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="text-sm uppercase tracking-[0.4em] text-slate-400 font-bold"
+          >
+            Progressive System Experience
+          </motion.p>
         </div>
 
-        <div className="relative py-12 lg:py-24 flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-32 w-full">
+        {/* Timeline Container */}
+        <div className="relative">
+          {/* Background Line (Desktop) */}
+          <div className="hidden lg:block absolute top-[48px] left-0 w-full h-[2px] bg-slate-200 -z-0" />
           
-          {/* PHASE 1: INPUT (LEFT) */}
-          <div className="relative w-full lg:w-64 flex flex-col items-center">
-            <AnimatePresence>
-              {(animationStep === 0 || animationStep === 1) && (
-                <motion.div 
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ 
-                    opacity: animationStep === 1 ? 0 : 1, 
-                    x: animationStep === 1 ? 200 : 0,
-                    scale: animationStep === 1 ? 0.7 : 1,
-                  }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: premiumEasing }}
-                  className="w-64 bg-white/5 border border-white/10 p-6 rounded-2xl glass-card backdrop-blur-xl relative z-30"
-                >
-                  <div className="flex items-center space-x-3 mb-4 border-b border-white/10 pb-3">
-                    <PlusCircle className="w-5 h-5 text-indigo-400" />
-                    <span className="text-[10px] uppercase tracking-widest font-bold">Add New Property</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="h-2 w-full bg-white/10 rounded" />
-                    <div className="h-2 w-2/3 bg-white/10 rounded" />
-                    <div className="grid grid-cols-2 gap-2 mt-4">
-                      <div className="h-6 bg-white/5 rounded-md border border-white/5" />
-                      <div className="h-6 bg-white/5 rounded-md border border-white/5" />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <span className="mt-6 text-[10px] uppercase tracking-widest text-white/20 font-bold">Input Data</span>
-          </div>
+          {/* Progress Fill Line (Desktop) */}
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
+            className="hidden lg:block absolute top-[48px] left-0 w-full h-[2px] bg-indigo-600 origin-left z-10"
+          />
 
-          {/* PHASE 2: ENGINE CORE (CENTER) */}
-          <div className="relative w-64 h-64 flex flex-col items-center justify-center">
-            {/* Engine Rings */}
-            <motion.div 
-              className="absolute w-48 h-48 border border-indigo-500/20 rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div 
-              className="absolute w-64 h-64 border border-indigo-400/10 rounded-full"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            />
-            
-            {/* Core */}
-            <motion.div 
-              className={cn(
-                "relative z-20 w-32 h-32 bg-indigo-600 rounded-full shadow-2xl flex flex-col items-center justify-center transition-all duration-700",
-                animationStep >= 2 ? "scale-110 shadow-[0_0_80px_rgba(99,102,241,0.6)]" : "scale-100"
-              )}
-              whileHover={{ scale: 1.15, rotate: 5 }}
-            >
-              <AnimatePresence mode="wait">
-                {animationStep === 2 ? (
-                  <motion.div
-                    key="processing"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    className="flex flex-col items-center"
-                  >
-                    <RefreshCw className="w-10 h-10 text-white animate-spin" />
-                    <span className="absolute -bottom-16 text-[9px] uppercase tracking-[0.3em] font-bold text-indigo-400 whitespace-nowrap animate-pulse">Structuring Data...</span>
-                  </motion.div>
-                ) : (
-                  <motion.div key="logo" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    <Cpu className="w-10 h-10 text-white" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Data Packet Particle (Flow Line Effect) */}
-              <AnimatePresence>
-                {animationStep === 3 && (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-0 relative z-20">
+            {STEPS.map((step, idx) => (
+              <motion.div 
+                key={step.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: idx * 0.3, ease: premiumEasing }}
+                className="group flex flex-col items-center lg:items-start text-center lg:text-left relative"
+              >
+                {/* Step Circle Container */}
+                <div className="relative mb-8 flex justify-center w-full lg:justify-start">
                   <motion.div 
-                    initial={{ x: -100, opacity: 0 }}
-                    animate={{ x: 300, opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="absolute h-0.5 w-32 bg-gradient-to-r from-indigo-500 to-transparent z-40"
-                    style={{ left: '50%' }}
+                    initial={{ backgroundColor: "#e5e7eb", borderColor: "#d1d5db" }}
+                    whileInView={{ backgroundColor: "#5b5bd6", borderColor: "#5b5bd6" }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (idx * 0.5) + 0.5, duration: 0.4 }}
+                    whileHover={{ y: -4, boxShadow: "0 0 0 6px rgba(91,91,214,0.1)" }}
+                    className="w-24 h-24 rounded-full border-2 flex items-center justify-center transition-all duration-300 relative z-30 group-hover:shadow-2xl cursor-default"
+                  >
+                    <step.icon className="w-8 h-8 text-white transition-transform duration-500 group-hover:scale-110" />
+                    
+                    {/* Active Step Indicator Badge */}
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-slate-900 rounded-full flex items-center justify-center border-4 border-slate-50">
+                      <span className="text-[10px] font-bold text-white">{step.id}</span>
+                    </div>
+                  </motion.div>
+
+                  {/* Vertical Progress Line (Mobile) */}
+                  {idx < STEPS.length - 1 && (
+                    <div className="lg:hidden absolute top-24 left-1/2 -translate-x-1/2 w-[2px] h-12 bg-slate-200">
+                      <motion.div 
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        transition={{ delay: (idx * 0.5) + 0.8, duration: 0.5 }}
+                        className="w-full h-full bg-indigo-600 origin-top"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* Text Content */}
+                <motion.div 
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: (idx * 0.5) + 0.7, duration: 0.5 }}
+                  className="space-y-2 lg:pr-8"
+                >
+                  <h4 className="text-xl font-headline text-slate-900 flex items-center justify-center lg:justify-start">
+                    {step.title}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: (idx * 0.5) + 0.9 }}
+                      className="ml-2"
+                    >
+                      <Check className="w-4 h-4 text-indigo-600" />
+                    </motion.div>
+                  </h4>
+                  <p className="text-sm font-body text-slate-500 leading-relaxed max-w-[200px]">
+                    {step.desc}
+                  </p>
+                </motion.div>
+
+                {/* Final Snap Settle Effect */}
+                {idx === STEPS.length - 1 && (
+                  <motion.div 
+                    initial={{ scale: 1 }}
+                    whileInView={{ scale: [1, 1.05, 1] }}
+                    transition={{ delay: 2.5, duration: 0.4 }}
+                    className="absolute inset-0 pointer-events-none"
                   />
                 )}
-              </AnimatePresence>
-            </motion.div>
-            
-            <span className="mt-16 text-[10px] uppercase tracking-widest text-indigo-400/40 font-bold">BrokBuddy Core</span>
+              </motion.div>
+            ))}
           </div>
-
-          {/* PHASE 3: OUTPUT (RIGHT) */}
-          <div className="relative w-full lg:w-72 flex flex-col items-center justify-center">
-            <div className="grid grid-cols-1 gap-4 w-full">
-              {OUTPUT_CARDS.map((card, idx) => (
-                <motion.div
-                  key={card.id}
-                  className="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center space-x-4 backdrop-blur-md hover:bg-white/10 transition-all group"
-                  initial={{ opacity: 0, x: 50, y: 10 }}
-                  animate={animationStep === 4 ? {
-                    opacity: 1,
-                    x: 0,
-                    y: 0,
-                  } : {
-                    opacity: 0,
-                    x: 50,
-                    y: 10
-                  }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: idx * 0.15,
-                    ease: premiumEasing 
-                  }}
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="p-2 rounded-lg bg-indigo-500/10 group-hover:bg-indigo-500/20 transition-colors">
-                    <card.icon className="w-5 h-5 text-indigo-400" />
-                  </div>
-                  <div className="text-left">
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider">{card.title}</h4>
-                    <p className="text-[10px] text-white/40">{card.desc}</p>
-                  </div>
-                  <CheckCircle2 className="w-3 h-3 text-green-500 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </motion.div>
-              ))}
-            </div>
-            <span className="mt-6 text-[10px] uppercase tracking-widest text-white/20 font-bold">Output Results</span>
-          </div>
-
         </div>
 
+        {/* Subconscious Push */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="flex flex-col items-center space-y-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 2.8, duration: 1 }}
+          className="mt-32 text-center"
         >
-          <p className="text-xl md:text-2xl font-headline italic text-white/80">
-            "BrokBuddy replaces chaos with structure, giving you absolute control over your growth."
-          </p>
-          <div className="flex flex-col items-center space-y-2">
-            <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-[0.5em]">This is what BrokBuddy does</span>
-            <div className="w-12 h-px bg-indigo-500/30" />
+          <div className="flex flex-col items-center space-y-4">
+             <span className="text-[10px] uppercase tracking-[0.5em] text-slate-400 font-bold">The BrokBuddy Standard</span>
+             <p className="text-lg font-headline italic text-slate-500">
+               "This is what BrokBuddy does."
+             </p>
+             <div className="w-12 h-px bg-slate-200" />
           </div>
         </motion.div>
+
       </div>
 
-      {/* Dynamic Background Effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/5 blur-[150px] -z-10 pointer-events-none" />
-      <div className={cn(
-        "absolute inset-0 transition-opacity duration-1000 bg-indigo-900/10 pointer-events-none",
-        animationStep === 2 ? "opacity-100" : "opacity-0"
-      )} />
+      {/* Background Soft Accent */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/[0.02] blur-[150px] -z-10 pointer-events-none" />
     </section>
   );
 }
