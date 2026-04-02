@@ -91,11 +91,11 @@ export function BrochureSystemFlow() {
                 <div className="flex flex-col items-center w-full">
                   <div className="relative mb-8">
                     {/* Circle Node */}
-                    <div className="w-24 h-24 rounded-[20px] bg-[#f8f9fc] border border-slate-200 shadow-sm flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:bg-[#111827] group-hover:translate-y-[-8px] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] group-hover:border-transparent">
+                    <div className="w-24 h-24 rounded-[20px] bg-[#f8f9fc] border border-slate-200 shadow-sm flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:bg-accent group-hover:translate-y-[-8px] group-hover:shadow-[0_20px_40px_rgba(33,100,50,0.15)] group-hover:border-transparent">
                       <step.icon className="w-8 h-8 text-indigo-600 transition-all duration-500 group-hover:text-white group-hover:scale-110 group-hover:rotate-[5deg]" />
                       
                       {/* Number Badge */}
-                      <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#111827] text-white text-[10px] font-bold flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:text-[#111827] border border-transparent group-hover:border-slate-100">
+                      <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#111827] text-white text-[10px] font-bold flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:text-accent border border-transparent group-hover:border-slate-100">
                         0{idx + 1}
                       </div>
                     </div>
