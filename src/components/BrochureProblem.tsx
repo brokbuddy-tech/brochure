@@ -33,36 +33,36 @@ const PROBLEMS = [
 
 export function BrochureProblem() {
   return (
-    <section className="py-24 px-6 bg-slate-50 text-slate-900 relative overflow-hidden">
+    <section className="py-24 px-6 bg-muted text-foreground relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-2xl mb-20 reveal">
-          <h2 className="text-3xl md:text-5xl font-headline mb-6">Real Estate Operations Are <span className="text-red-500">Broken</span></h2>
-          <p className="text-lg text-slate-500 font-body">The modern brokerage is more complex than ever, yet most agents are still using tools from the last decade.</p>
+          <h2 className="text-3xl md:text-5xl font-headline mb-6 text-primary">Real Estate Operations Are <span className="text-accent">Broken</span></h2>
+          <p className="text-lg text-muted-foreground font-body">The modern brokerage is more complex than ever, yet most agents are still using tools from the last decade.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PROBLEMS.map((prob, idx) => (
             <div 
               key={idx} 
-              className="reveal p-8 rounded-2xl bg-white border border-slate-200 hover:border-red-500/30 shadow-sm hover:shadow-xl transition-all duration-500 group"
+              className="reveal p-8 rounded-2xl bg-background border border-border/10 hover:border-accent/30 shadow-sm hover:shadow-xl transition-all duration-500 group"
             >
-              <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <prob.icon className="w-6 h-6 text-red-500" />
+              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <prob.icon className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-xl font-headline mb-4 text-slate-900">{prob.title}</h3>
-              <p className="text-sm font-body text-slate-500 leading-relaxed">{prob.desc}</p>
+              <h3 className="text-xl font-headline mb-4 text-primary">{prob.title}</h3>
+              <p className="text-sm font-body text-muted-foreground leading-relaxed">{prob.desc}</p>
             </div>
           ))}
           
-          <div className="lg:col-span-1 p-8 rounded-2xl bg-white border border-slate-200 flex flex-col items-center justify-center text-center reveal shadow-sm">
-            <p className="text-2xl font-headline italic mb-4 text-indigo-600">Does this sound like your agency?</p>
-            <div className="w-12 h-[1px] bg-slate-200" />
+          <div className="lg:col-span-1 p-8 rounded-2xl bg-background border border-border/10 flex flex-col items-center justify-center text-center reveal shadow-sm">
+            <p className="text-2xl font-headline italic mb-4 text-secondary">Does this sound like your agency?</p>
+            <div className="w-12 h-[1px] bg-border/20" />
           </div>
         </div>
       </div>
       
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 blur-[150px] -z-10" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 blur-[150px] -z-10" />
     </section>
   );
 }

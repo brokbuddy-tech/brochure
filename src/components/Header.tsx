@@ -18,12 +18,12 @@ export function Header() {
   return (
     <nav className={cn(
       "fixed top-0 left-0 w-full h-20 flex items-center justify-between px-6 lg:px-12 z-[100] transition-all duration-300",
-      isScrolled ? "bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 h-16" : "bg-transparent py-6 h-24"
+      isScrolled ? "bg-white/90 backdrop-blur-md border-b border-border/50 py-4 h-16" : "bg-transparent py-6 h-24"
     )}>
       <div className="flex items-center space-x-3 group cursor-pointer">
         <div className={cn(
           "p-2 rounded-xl transition-colors",
-          isScrolled ? "bg-slate-100" : "bg-white/10"
+          isScrolled ? "bg-primary/5" : "bg-white/10"
         )}>
           <svg
             width="24"
@@ -33,7 +33,7 @@ export function Header() {
             xmlns="http://www.w3.org/2000/svg"
             className={cn(
               "transition-transform duration-500 group-hover:rotate-12",
-              isScrolled ? "text-slate-900" : "text-white"
+              isScrolled ? "text-primary" : "text-primary"
             )}
           >
             <path
@@ -47,7 +47,7 @@ export function Header() {
         </div>
         <span className={cn(
           "text-xl font-headline tracking-widest uppercase transition-colors",
-          isScrolled ? "text-slate-900" : "text-white"
+          "text-primary"
         )}>
           BrokBuddy
         </span>
@@ -56,7 +56,7 @@ export function Header() {
       <div className="flex items-center space-x-6">
         <div className={cn(
           "hidden md:flex items-center space-x-6 text-[11px] uppercase tracking-widest font-body font-bold transition-colors",
-          isScrolled ? "text-slate-500" : "text-white/40"
+          isScrolled ? "text-muted-foreground" : "text-muted-foreground"
         )}>
           <a href="mailto:info@brokbuddy.com" className="hover:text-primary transition-colors">Contact</a>
         </div>
@@ -64,9 +64,7 @@ export function Header() {
           size="sm" 
           className={cn(
             "rounded-full px-6 h-10 font-bold transition-all duration-300",
-            isScrolled 
-              ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-              : "bg-white text-black hover:bg-white/90"
+            "bg-accent text-accent-foreground hover:bg-accent/90"
           )}
         >
           Book Demo

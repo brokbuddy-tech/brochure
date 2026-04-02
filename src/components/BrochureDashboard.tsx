@@ -6,24 +6,24 @@ import { Badge } from '@/components/ui/badge';
 
 export function BrochureDashboard() {
   return (
-    <section className="py-24 px-6 bg-white text-slate-900 overflow-hidden relative">
+    <section className="py-24 px-6 bg-background text-foreground overflow-hidden relative border-t border-border/5">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal">
-          <h2 className="text-3xl md:text-5xl font-headline mb-6 text-slate-900">Total Agency Oversight</h2>
-          <p className="text-lg text-slate-500 font-body max-w-2xl mx-auto mb-8">Every decision backed by real data. Monitor your growth with surgical precision.</p>
+          <h2 className="text-3xl md:text-5xl font-headline mb-6 text-primary">Total Agency Oversight</h2>
+          <p className="text-lg text-muted-foreground font-body max-w-2xl mx-auto mb-8">Every decision backed by real data. Monitor your growth with surgical precision.</p>
         </div>
 
         <div className="reveal">
-          <Card className="bg-white border-slate-200 rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)]">
+          <Card className="bg-background border-border/10 rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.05)]">
             <CardContent className="p-0">
-              <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-slate-50 p-6 md:p-12 relative overflow-hidden">
+              <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-muted p-6 md:p-12 relative overflow-hidden">
                 {/* Mock Dashboard UI */}
                 <div className="grid grid-cols-12 gap-6 h-full">
                   <div className="col-span-3 space-y-6 hidden lg:block">
-                    <div className="h-12 w-full bg-slate-200/50 rounded-xl" />
+                    <div className="h-12 w-full bg-border/5 rounded-xl" />
                     <div className="space-y-4">
                       {[1,2,3,4,5].map(i => (
-                        <div key={i} className="h-4 w-full bg-slate-200/30 rounded" />
+                        <div key={i} className="h-4 w-full bg-border/10 rounded" />
                       ))}
                     </div>
                   </div>
@@ -31,38 +31,38 @@ export function BrochureDashboard() {
                   <div className="col-span-12 lg:col-span-9 space-y-8">
                     <div className="flex items-center justify-between">
                       <div className="space-y-2">
-                        <div className="h-6 w-48 bg-slate-200 rounded-lg" />
-                        <div className="h-4 w-32 bg-slate-100 rounded-lg" />
+                        <div className="h-6 w-48 bg-border/10 rounded-lg" />
+                        <div className="h-4 w-32 bg-border/5 rounded-lg" />
                       </div>
-                      <Badge variant="outline" className="text-indigo-600 border-indigo-200 bg-indigo-50/50">Live Analytics</Badge>
+                      <Badge variant="outline" className="text-secondary border-secondary/20 bg-secondary/5">Live Analytics</Badge>
                     </div>
                     
                     <div className="grid grid-cols-3 gap-6">
-                      <div className="h-32 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
-                        <div className="h-4 w-20 bg-slate-100 rounded mb-4" />
-                        <div className="h-8 w-24 bg-slate-200 rounded" />
+                      <div className="h-32 bg-background border border-border/10 rounded-3xl p-6 shadow-sm">
+                        <div className="h-4 w-20 bg-muted rounded mb-4" />
+                        <div className="h-8 w-24 bg-border/10 rounded" />
                       </div>
-                      <div className="h-32 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
-                        <div className="h-4 w-20 bg-slate-100 rounded mb-4" />
-                        <div className="h-8 w-24 bg-slate-200 rounded" />
+                      <div className="h-32 bg-background border border-border/10 rounded-3xl p-6 shadow-sm">
+                        <div className="h-4 w-20 bg-muted rounded mb-4" />
+                        <div className="h-8 w-24 bg-border/10 rounded" />
                       </div>
-                      <div className="h-32 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
-                        <div className="h-4 w-20 bg-slate-100 rounded mb-4" />
-                        <div className="h-8 w-24 bg-slate-200 rounded" />
+                      <div className="h-32 bg-background border border-border/10 rounded-3xl p-6 shadow-sm">
+                        <div className="h-4 w-20 bg-muted rounded mb-4" />
+                        <div className="h-8 w-24 bg-border/10 rounded" />
                       </div>
                     </div>
                     
-                    <div className="flex-1 bg-white border border-slate-100 rounded-[2rem] p-8 min-h-[200px] shadow-sm">
+                    <div className="flex-1 bg-background border border-border/10 rounded-[2rem] p-8 min-h-[200px] shadow-sm">
                       <div className="flex justify-between items-center mb-10">
-                        <div className="h-6 w-40 bg-slate-100 rounded" />
+                        <div className="h-6 w-40 bg-muted rounded" />
                         <div className="flex space-x-2">
-                          <div className="w-8 h-4 bg-indigo-500 rounded" />
-                          <div className="w-8 h-4 bg-purple-500 rounded" />
+                          <div className="w-8 h-4 bg-primary rounded" />
+                          <div className="w-8 h-4 bg-secondary rounded" />
                         </div>
                       </div>
                       <div className="flex items-end space-x-4 h-32">
                         {[40, 60, 45, 90, 70, 100, 80, 55].map((h, i) => (
-                          <div key={i} className="flex-1 bg-indigo-500/20 rounded-t-lg transition-all duration-1000" style={{ height: `${h}%` }} />
+                          <div key={i} className="flex-1 bg-secondary/20 rounded-t-lg transition-all duration-1000" style={{ height: `${h}%` }} />
                         ))}
                       </div>
                     </div>
@@ -71,9 +71,9 @@ export function BrochureDashboard() {
                 
                 {/* Floating tags */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-4 pointer-events-none">
-                   <div className="px-6 py-3 bg-indigo-600 text-white rounded-full text-xs font-bold shadow-2xl animate-bounce">Revenue Tracking</div>
-                   <div className="px-6 py-3 bg-purple-600 text-white rounded-full text-xs font-bold shadow-2xl animate-bounce" style={{ animationDelay: '0.2s' }}>Growth Monitoring</div>
-                   <div className="px-6 py-3 bg-white text-slate-900 border border-slate-100 rounded-full text-xs font-bold shadow-2xl animate-bounce" style={{ animationDelay: '0.4s' }}>Agent KPIs</div>
+                   <div className="px-6 py-3 bg-primary text-primary-foreground rounded-full text-xs font-bold shadow-2xl animate-bounce">Revenue Tracking</div>
+                   <div className="px-6 py-3 bg-secondary text-secondary-foreground rounded-full text-xs font-bold shadow-2xl animate-bounce" style={{ animationDelay: '0.2s' }}>Growth Monitoring</div>
+                   <div className="px-6 py-3 bg-background text-primary border border-border/10 rounded-full text-xs font-bold shadow-2xl animate-bounce" style={{ animationDelay: '0.4s' }}>Property Management</div>
                 </div>
               </div>
             </CardContent>
