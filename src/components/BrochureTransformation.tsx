@@ -26,24 +26,23 @@ export function BrochureTransformation() {
     offset: ["start start", "end end"]
   });
 
-  // Problem state (Visible initially)
-  // Stays fully visible until 35%, then fades out by 50%
-  const problemOpacity = useTransform(scrollYProgress, [0, 0.35, 0.5], [1, 1, 0]);
-  const problemY = useTransform(scrollYProgress, [0, 0.35, 0.5], [0, 0, -40]);
-  const problemScale = useTransform(scrollYProgress, [0, 0.35, 0.5], [1, 1, 0.9]);
+  // Problem state fades out and moves up slightly
+  const problemOpacity = useTransform(scrollYProgress, [0, 0.3, 0.45], [1, 1, 0]);
+  const problemY = useTransform(scrollYProgress, [0, 0.3, 0.45], [0, 0, -40]);
+  const problemScale = useTransform(scrollYProgress, [0, 0.3, 0.45], [1, 1, 0.95]);
 
-  // Solution state (Hidden initially)
-  // Starts appearing at 45%, fully visible by 65%
-  const solutionOpacity = useTransform(scrollYProgress, [0.45, 0.6, 0.85], [0, 1, 1]);
-  const solutionY = useTransform(scrollYProgress, [0.45, 0.6, 0.85], [40, 0, 0]);
-  const solutionScale = useTransform(scrollYProgress, [0.45, 0.6, 0.85], [1.1, 1, 1]);
+  // Solution state fades in and moves up to center
+  // Adjusted values to keep it lower ("a little down") and prevent it from flying out of frame
+  const solutionOpacity = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [0, 1, 1]);
+  const solutionY = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [80, 40, 40]); 
+  const solutionScale = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [1.05, 1, 1]);
 
   // Pointer events management to ensure interactivity
   const problemPointerEvents = useTransform(scrollYProgress, (v) => v > 0.48 ? "none" : "auto");
   const solutionPointerEvents = useTransform(scrollYProgress, (v) => v < 0.52 ? "none" : "auto");
 
   return (
-    <section ref={containerRef} className="relative h-[180vh] bg-white">
+    <section ref={containerRef} className="relative h-[160vh] bg-white">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Step 1: Problem State */}
