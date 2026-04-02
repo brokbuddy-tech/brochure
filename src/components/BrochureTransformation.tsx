@@ -26,23 +26,22 @@ export function BrochureTransformation() {
     offset: ["start start", "end end"]
   });
 
-  // Problem state fades out and moves up slightly
-  const problemOpacity = useTransform(scrollYProgress, [0, 0.3, 0.45], [1, 1, 0]);
-  const problemY = useTransform(scrollYProgress, [0, 0.3, 0.45], [0, 0, -40]);
-  const problemScale = useTransform(scrollYProgress, [0, 0.3, 0.45], [1, 1, 0.95]);
+  // Fade and Y transforms for Problem State
+  const problemOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const problemY = useTransform(scrollYProgress, [0, 0.4], [0, -30]);
+  const problemScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.98]);
 
-  // Solution state fades in and moves up to center
-  // Adjusted values to keep it lower ("a little down") and prevent it from flying out of frame
-  const solutionOpacity = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [0, 1, 1]);
-  const solutionY = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [80, 40, 40]); 
-  const solutionScale = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [1.05, 1, 1]);
+  // Fade and Y transforms for Solution State
+  const solutionOpacity = useTransform(scrollYProgress, [0.45, 0.8], [0, 1]);
+  const solutionY = useTransform(scrollYProgress, [0.45, 0.8], [40, 0]);
+  const solutionScale = useTransform(scrollYProgress, [0.45, 0.8], [1.02, 1]);
 
-  // Pointer events management to ensure interactivity
+  // Ensure pointer events switch so buttons/links are clickable when visible
   const problemPointerEvents = useTransform(scrollYProgress, (v) => v > 0.48 ? "none" : "auto");
   const solutionPointerEvents = useTransform(scrollYProgress, (v) => v < 0.52 ? "none" : "auto");
 
   return (
-    <section ref={containerRef} className="relative h-[160vh] bg-white">
+    <section ref={containerRef} className="relative h-[150vh] bg-white">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Step 1: Problem State */}
@@ -56,28 +55,27 @@ export function BrochureTransformation() {
           }}
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         >
-          <div className="max-w-4xl space-y-12">
-            <h2 className="text-4xl md:text-6xl font-headline text-slate-900 tracking-tight leading-tight">
+          <div className="max-w-4xl space-y-10">
+            <h2 className="text-4xl md:text-6xl font-headline text-primary tracking-tight leading-tight">
               Managing real estate <br />
-              <span className="text-red-600 italic font-bold">shouldn't</span> feel like this.
+              <span className="text-accent italic font-bold">shouldn't</span> feel like this.
             </h2>
             
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            <div className="flex flex-wrap justify-center gap-4">
               {PROBLEMS.map((problem, idx) => (
                 <div 
                   key={idx}
-                  className="px-6 py-3 md:px-8 md:py-4 bg-white border border-slate-200 rounded-2xl shadow-xl text-base md:text-lg font-body text-slate-500 whitespace-nowrap"
+                  className="px-6 py-3 bg-muted border border-border/10 rounded-2xl shadow-sm text-base font-body text-foreground/60 whitespace-nowrap"
                 >
                   {problem}
                 </div>
               ))}
             </div>
             
-            <div className="pt-12 flex flex-col items-center space-y-2 text-slate-400">
-              <p className="text-sm font-body uppercase tracking-[0.3em] animate-pulse">
+            <div className="pt-8 flex flex-col items-center space-y-2 text-foreground/20">
+              <p className="text-xs font-body uppercase tracking-[0.3em] animate-pulse">
                 Scroll to resolve
               </p>
-              <div className="w-px h-12 bg-slate-200 animate-bounce mt-4" />
             </div>
           </div>
         </motion.div>
@@ -93,28 +91,28 @@ export function BrochureTransformation() {
           }}
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         >
-          <div className="max-w-5xl w-full space-y-16">
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-6xl font-headline text-slate-900 tracking-tight">
-                This is how <span className="text-indigo-600 font-bold">BrokBuddy</span> works.
+          <div className="max-w-5xl w-full space-y-10">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-6xl font-headline text-primary tracking-tight">
+                This is how <span className="text-secondary font-bold">BrokBuddy</span> works.
               </h2>
-              <p className="text-xl text-slate-500 font-body">One unified system. Zero friction.</p>
+              <p className="text-xl text-muted-foreground font-body">One unified system. Zero friction.</p>
             </div>
 
             {/* Unified System Block */}
-            <div className="relative p-3 bg-white rounded-[3rem] border border-indigo-100 shadow-[0_30px_60px_-15px_rgba(91,91,214,0.15)] overflow-hidden">
-              <div className="bg-slate-50/50 rounded-[2.5rem] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-4">
+            <div className="relative p-2 bg-white rounded-[2.5rem] border border-secondary/20 shadow-xl overflow-hidden">
+              <div className="bg-muted rounded-[2rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
                 {SOLUTION_STEPS.map((step, idx) => (
                   <React.Fragment key={idx}>
-                    <div className="flex flex-col items-center space-y-4 group/step transition-transform duration-500 hover:-translate-y-1">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-3xl bg-indigo-600 shadow-lg shadow-indigo-200 flex items-center justify-center">
-                        <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                    <div className="flex flex-col items-center space-y-3 group/step transition-transform duration-500 hover:-translate-y-1">
+                      <div className="w-16 h-16 rounded-2xl bg-primary shadow-lg shadow-primary/10 flex items-center justify-center">
+                        <CheckCircle2 className="w-6 h-6 text-white" />
                       </div>
-                      <span className="text-sm md:text-base font-headline font-bold text-slate-900 whitespace-nowrap">{step}</span>
+                      <span className="text-sm font-headline font-bold text-primary whitespace-nowrap">{step}</span>
                     </div>
                     {idx < SOLUTION_STEPS.length - 1 && (
                       <div className="hidden md:block opacity-20">
-                        <ArrowRight className="w-6 h-6 text-slate-400" />
+                        <ArrowRight className="w-5 h-5 text-primary" />
                       </div>
                     )}
                   </React.Fragment>
@@ -122,10 +120,10 @@ export function BrochureTransformation() {
               </div>
               
               {/* Subtle Ambient Glow */}
-              <div className="absolute -inset-10 bg-indigo-500/5 blur-3xl rounded-full opacity-50 pointer-events-none" />
+              <div className="absolute -inset-10 bg-primary/5 blur-3xl rounded-full opacity-50 pointer-events-none" />
             </div>
 
-            <p className="text-xs font-body text-slate-400 uppercase tracking-[0.5em] pt-12">
+            <p className="text-[10px] font-body text-foreground/30 uppercase tracking-[0.5em]">
               The BrokBuddy Standard
             </p>
           </div>
