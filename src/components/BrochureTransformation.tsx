@@ -31,15 +31,15 @@ export function BrochureTransformation() {
   const problemY = useTransform(scrollYProgress, [0, 0.4, 0.6], [0, 0, -30]);
   
   // Solution state transforms: Fades in 40-60%, Visible 60-100%
-  const solutionOpacity = useTransform(scrollYProgress, [0.4, 0.6, 1], [0, 1, 1]);
-  const solutionY = useTransform(scrollYProgress, [0.4, 0.6, 1], [30, 0, 0]);
-  const solutionScale = useTransform(scrollYProgress, [0.4, 0.6, 1], [0.95, 1, 1]);
+  const solutionOpacity = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [0, 1, 1]);
+  const solutionY = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [30, 0, 0]);
+  const solutionScale = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [0.95, 1, 1]);
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] bg-gradient-to-b from-white to-slate-50/50">
+    <section ref={containerRef} className="relative h-[300vh] bg-white">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-6">
         
-        {/* Step 1: Problem State (Static & Fading) */}
+        {/* Step 1: Problem State */}
         <motion.div 
           style={{ opacity: problemOpacity, y: problemY }}
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
@@ -67,12 +67,14 @@ export function BrochureTransformation() {
           </div>
         </motion.div>
 
-        {/* Step 2: Solution State (Snap Reveal) */}
+        {/* Step 2: Solution State */}
         <motion.div 
-          style={{ opacity: solutionOpacity, y: solutionY, scale: solutionScale }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none data-[visible=true]:pointer-events-auto"
-          // @ts-ignore - for simplified logic visibility check if needed
-          data-visible={scrollYProgress.get() > 0.5}
+          style={{ 
+            opacity: solutionOpacity, 
+            y: solutionY, 
+            scale: solutionScale,
+          }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         >
           <div className="max-w-5xl w-full space-y-16">
             <div className="space-y-6">
@@ -82,8 +84,8 @@ export function BrochureTransformation() {
               <p className="text-xl text-slate-500 font-body">One unified system. Zero friction.</p>
             </div>
 
-            {/* Unified System Block - High Visual Weight */}
-            <div className="relative p-3 bg-white rounded-[3rem] border border-indigo-100 shadow-[0_30px_60px_-15px_rgba(91,91,214,0.15)] overflow-hidden group">
+            {/* Unified System Block */}
+            <div className="relative p-3 bg-white rounded-[3rem] border border-indigo-100 shadow-[0_30px_60px_-15px_rgba(91,91,214,0.15)] overflow-hidden">
               <div className="bg-slate-50/50 rounded-[2.5rem] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-4">
                 {SOLUTION_STEPS.map((step, idx) => (
                   <React.Fragment key={idx}>
