@@ -8,10 +8,8 @@ import {
   EyeOff, 
   MessageSquareOff, 
   Database,
-  BarChart,
-  ArrowRight
+  BarChart
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const PROBLEMS = [
   {
@@ -112,7 +110,7 @@ export function BrochureProblem() {
             <div className="absolute inset-0 bg-primary/5 blur-[80px] rounded-full -z-10" />
           </motion.div>
 
-          {/* Surrounding Problem Cards */}
+          {/* Surrounding Problem Circles */}
           {PROBLEMS.map((prob, idx) => (
             <motion.div
               key={idx}
@@ -136,13 +134,13 @@ export function BrochureProblem() {
                 boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
                 zIndex: 30
               }}
-              className="absolute w-[280px] p-8 bg-white/40 backdrop-blur-sm border border-slate-200 rounded-[2rem] transition-all duration-500 group cursor-default"
+              className="absolute w-[280px] h-[280px] p-8 bg-white/40 backdrop-blur-sm border border-slate-200 rounded-full transition-all duration-500 group cursor-default flex flex-col items-center justify-center text-center"
             >
-              <div className="flex flex-col items-start gap-4">
+              <div className="flex flex-col items-center gap-4">
                 <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 transition-colors group-hover:bg-primary group-hover:text-white">
                   <prob.icon className="w-5 h-5 text-[#6b7280] group-hover:text-white" />
                 </div>
-                <div className="space-y-2 text-left">
+                <div className="space-y-2">
                   <h4 className="text-lg font-headline font-bold text-[#111827] leading-tight transition-colors group-hover:text-primary">
                     {prob.title}
                   </h4>
@@ -186,15 +184,6 @@ export function BrochureProblem() {
           >
             This is where most brokerages struggle.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
-          >
-            <Button size="lg" className="h-14 px-10 rounded-full bg-[#111827] text-white hover:bg-slate-800 text-lg font-semibold group shadow-xl">
-              See How It Works <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </motion.div>
         </div>
       </div>
     </section>
