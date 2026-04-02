@@ -1,9 +1,9 @@
+
 "use client";
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 const PROBLEMS = [
   "Listings everywhere",
@@ -26,105 +26,88 @@ export function BrochureTransformation() {
     offset: ["start start", "end end"]
   });
 
-  // Animation mapping
-  const problemOpacity = useTransform(scrollYProgress, [0, 0.35, 0.45], [1, 1, 0]);
-  const problemScale = useTransform(scrollYProgress, [0, 0.35, 0.45], [1, 1, 0.8]);
-  const problemY = useTransform(scrollYProgress, [0, 0.35, 0.45], [0, 0, -50]);
+  // Problem state transforms: Visible 0-40%, Fades out 40-60%
+  const problemOpacity = useTransform(scrollYProgress, [0, 0.4, 0.6], [1, 1, 0]);
+  const problemY = useTransform(scrollYProgress, [0, 0.4, 0.6], [0, 0, -30]);
   
-  const solutionOpacity = useTransform(scrollYProgress, [0.55, 0.65, 1], [0, 1, 1]);
-  const solutionScale = useTransform(scrollYProgress, [0.55, 0.65, 1], [0.95, 1, 1]);
-  const solutionY = useTransform(scrollYProgress, [0.55, 0.65, 1], [30, 0, 0]);
-
-  // Chip convergence
-  const chip1X = useTransform(scrollYProgress, [0.35, 0.45], [-40, 0]);
-  const chip2X = useTransform(scrollYProgress, [0.35, 0.45], [40, 0]);
-  const chip3X = useTransform(scrollYProgress, [0.35, 0.45], [-20, 0]);
-  const chip4X = useTransform(scrollYProgress, [0.35, 0.45], [20, 0]);
+  // Solution state transforms: Fades in 40-60%, Visible 60-100%
+  const solutionOpacity = useTransform(scrollYProgress, [0.4, 0.6, 1], [0, 1, 1]);
+  const solutionY = useTransform(scrollYProgress, [0.4, 0.6, 1], [30, 0, 0]);
+  const solutionScale = useTransform(scrollYProgress, [0.4, 0.6, 1], [0.95, 1, 1]);
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] bg-white">
+    <section ref={containerRef} className="relative h-[300vh] bg-gradient-to-b from-white to-slate-50/50">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-6">
         
-        {/* Step 1: Problem State */}
+        {/* Step 1: Problem State (Static & Fading) */}
         <motion.div 
-          style={{ opacity: problemOpacity, scale: problemScale, y: problemY }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
+          style={{ opacity: problemOpacity, y: problemY }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         >
-          <div className="max-w-3xl space-y-12">
+          <div className="max-w-4xl space-y-12">
             <h2 className="text-4xl md:text-6xl font-headline text-slate-900 tracking-tight leading-tight">
               Managing real estate <br />
-              <span className="text-red-500 italic">shouldn't</span> feel like this.
+              <span className="text-red-500 italic font-bold">shouldn't</span> feel like this.
             </h2>
             
-            <div className="flex flex-wrap justify-center gap-4">
-              {PROBLEMS.map((problem, idx) => {
-                const xPos = idx === 0 ? chip1X : idx === 1 ? chip2X : idx === 2 ? chip3X : chip4X;
-                return (
-                  <motion.div 
-                    key={idx}
-                    style={{ x: xPos }}
-                    animate={{ 
-                      y: [0, -10, 0],
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity, 
-                      delay: idx * 0.5,
-                      ease: "easeInOut" 
-                    }}
-                    className="px-6 py-3 bg-slate-50 border border-slate-200 rounded-full shadow-sm text-sm font-body text-slate-500 whitespace-nowrap"
-                  >
-                    {problem}
-                  </motion.div>
-                );
-              })}
+            <div className="flex flex-wrap justify-center gap-6">
+              {PROBLEMS.map((problem, idx) => (
+                <div 
+                  key={idx}
+                  className="px-8 py-4 bg-white border border-slate-200 rounded-2xl shadow-xl text-lg font-body text-slate-500 whitespace-nowrap"
+                >
+                  {problem}
+                </div>
+              ))}
             </div>
             
-            <p className="text-sm font-body text-slate-400 uppercase tracking-widest pt-8 animate-pulse">
+            <p className="text-sm font-body text-slate-400 uppercase tracking-[0.3em] pt-12 animate-pulse">
               Scroll to resolve
             </p>
           </div>
         </motion.div>
 
-        {/* Step 3: Solution Snap */}
+        {/* Step 2: Solution State (Snap Reveal) */}
         <motion.div 
-          style={{ opacity: solutionOpacity, scale: solutionScale, y: solutionY }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-center z-20"
+          style={{ opacity: solutionOpacity, y: solutionY, scale: solutionScale }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none data-[visible=true]:pointer-events-auto"
+          // @ts-ignore - for simplified logic visibility check if needed
+          data-visible={scrollYProgress.get() > 0.5}
         >
-          <div className="max-w-5xl w-full space-y-16 px-6">
-            <div className="space-y-4">
+          <div className="max-w-5xl w-full space-y-16">
+            <div className="space-y-6">
               <h2 className="text-4xl md:text-6xl font-headline text-slate-900 tracking-tight">
-                This is how <span className="text-indigo-600">BrokBuddy</span> works.
+                This is how <span className="text-indigo-600 font-bold">BrokBuddy</span> works.
               </h2>
-              <p className="text-lg text-slate-500 font-body">One unified system. Zero friction.</p>
+              <p className="text-xl text-slate-500 font-body">One unified system. Zero friction.</p>
             </div>
 
-            {/* Unified System Block */}
-            <div className="relative p-2 bg-slate-50 rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden group hover:shadow-2xl transition-shadow duration-500">
-              <div className="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
+            {/* Unified System Block - High Visual Weight */}
+            <div className="relative p-3 bg-white rounded-[3rem] border border-indigo-100 shadow-[0_30px_60px_-15px_rgba(91,91,214,0.15)] overflow-hidden group">
+              <div className="bg-slate-50/50 rounded-[2.5rem] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-4">
                 {SOLUTION_STEPS.map((step, idx) => (
                   <React.Fragment key={idx}>
-                    <div className="flex flex-col items-center space-y-4 group/step">
-                      <div className="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center transition-all duration-500 group-hover/step:bg-indigo-600 group-hover/step:scale-110">
-                        <CheckCircle2 className="w-7 h-7 text-indigo-600 group-hover/step:text-white transition-colors" />
+                    <div className="flex flex-col items-center space-y-4 group/step transition-transform duration-500 hover:-translate-y-1">
+                      <div className="w-20 h-20 rounded-3xl bg-indigo-600 shadow-lg shadow-indigo-200 flex items-center justify-center">
+                        <CheckCircle2 className="w-8 h-8 text-white" />
                       </div>
-                      <span className="text-sm font-headline font-bold text-slate-900">{step}</span>
+                      <span className="text-base font-headline font-bold text-slate-900 whitespace-nowrap">{step}</span>
                     </div>
                     {idx < SOLUTION_STEPS.length - 1 && (
-                      <div className="hidden md:block">
-                        <ArrowRight className="w-5 h-5 text-slate-200" />
+                      <div className="hidden md:block opacity-20">
+                        <ArrowRight className="w-6 h-6 text-slate-400" />
                       </div>
                     )}
                   </React.Fragment>
                 ))}
               </div>
               
-              {/* Subtle Glow Pulse */}
-              <div className="absolute inset-0 bg-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              {/* Subtle Ambient Glow */}
+              <div className="absolute -inset-10 bg-indigo-500/5 blur-3xl rounded-full opacity-50 pointer-events-none" />
             </div>
 
-            <p className="text-xs font-body text-slate-400 uppercase tracking-[0.3em] pt-8">
-              This is the BrokBuddy standard.
+            <p className="text-xs font-body text-slate-400 uppercase tracking-[0.5em] pt-12">
+              The BrokBuddy Standard
             </p>
           </div>
         </motion.div>
