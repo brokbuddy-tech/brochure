@@ -83,9 +83,9 @@ export function BrochureTransformation() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.4 + (idx * 0.1), duration: 0.5, ease: premiumEasing }}
-                      className="flex flex-col items-center space-y-3 group/step transition-transform duration-500 hover:-translate-y-1"
+                      className="flex flex-col items-center space-y-3 group/step"
                     >
-                      <div className="w-16 h-16 rounded-2xl bg-primary shadow-lg shadow-primary/10 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-2xl bg-primary shadow-lg shadow-primary/10 flex items-center justify-center transition-transform duration-300 hover:scale-110 cursor-pointer">
                         <CheckCircle2 className="w-6 h-6 text-white" />
                       </div>
                       <span className="text-sm font-headline font-bold text-primary whitespace-nowrap">{step}</span>
