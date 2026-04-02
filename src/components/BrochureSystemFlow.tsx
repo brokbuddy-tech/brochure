@@ -95,7 +95,7 @@ export function BrochureSystemFlow() {
                       <step.icon className="w-8 h-8 text-indigo-600 transition-all duration-500 group-hover:text-white group-hover:scale-110 group-hover:rotate-[5deg]" />
                       
                       {/* Number Badge */}
-                      <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#111827] text-white text-[10px] font-bold flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:text-accent border border-transparent group-hover:border-slate-100">
+                      <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-secondary text-white text-[10px] font-bold flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:text-accent border border-transparent group-hover:border-slate-100">
                         0{idx + 1}
                       </div>
                     </div>
