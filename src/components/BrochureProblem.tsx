@@ -37,8 +37,8 @@ export function BrochureProblem() {
   const bgImage = PlaceHolderImages.find(img => img.id === 'problem-bg');
 
   return (
-    <section className="py-24 px-6 bg-[#F4F7F9] text-[#263238] relative overflow-hidden min-h-[900px] flex flex-col items-center justify-center">
-      {/* Background Image with Overlay */}
+    <section className="py-24 px-6 bg-white text-[#263238] relative overflow-hidden min-h-[900px] flex flex-col items-center justify-center">
+      {/* Bright Background Image */}
       {bgImage && (
         <div className="absolute inset-0 z-0">
           <Image
@@ -46,19 +46,20 @@ export function BrochureProblem() {
             alt={bgImage.description}
             fill
             priority
-            className="object-cover opacity-20"
+            className="object-cover opacity-90"
             data-ai-hint={bgImage.imageHint}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F7F9] via-white/40 to-[#F4F7F9]" />
+          {/* Subtle vignette for edge transition only, removing the heavy white layer */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/10" />
         </div>
       )}
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="max-w-2xl mb-20 text-center mx-auto reveal">
-          <h2 className="text-3xl md:text-5xl font-headline mb-6 text-[#003366]">
+          <h2 className="text-3xl md:text-5xl font-headline mb-6 text-[#003366] drop-shadow-sm">
             Your workflow is <span className="text-[#FF8A00]">fragmented.</span>
           </h2>
-          <p className="text-lg text-[#263238]/70 font-body">
+          <p className="text-lg text-[#263238] font-body font-semibold drop-shadow-sm">
             The modern brokerage is complex, yet most agents are still using tools from the last decade.
           </p>
         </div>
@@ -67,11 +68,11 @@ export function BrochureProblem() {
         <div className="hidden lg:block relative h-[700px] w-full max-w-[1000px] mx-auto">
           {/* Central Anchor Card */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="w-[220px] h-[220px] rounded-full bg-white border-2 border-[#4A90E2]/20 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
-              <p className="text-xl md:text-2xl font-headline italic text-[#4A90E2] leading-tight">
+            <div className="w-[200px] h-[200px] rounded-full bg-white/95 backdrop-blur-sm border-2 border-[#4A90E2]/30 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
+              <p className="text-lg md:text-xl font-headline italic text-[#4A90E2] leading-tight">
                 Does this sound like your agency?
               </p>
-              <div className="w-10 h-[2px] bg-[#4A90E2]/20 mt-4" />
+              <div className="w-10 h-[2px] bg-[#4A90E2]/30 mt-4" />
             </div>
           </div>
 
@@ -89,16 +90,16 @@ export function BrochureProblem() {
                 >
                   {/* Layer 1: Counter-rotate the global orbital spin */}
                   <div className="animate-counter-spin-slow">
-                    {/* Layer 2: Counter-rotate the static initial angle offset */}
+                    {/* Layer 2: Counter-rotate the static initial angle offset to keep text upright */}
                     <div 
                       style={{ transform: `rotate(-${angle}deg)` }}
-                      className="w-[280px] h-[280px] p-8 rounded-full bg-white border border-[#263238]/10 hover:border-[#FF8A00]/40 shadow-xl transition-all duration-500 group flex flex-col items-center justify-center text-center"
+                      className="w-[280px] h-[280px] p-8 rounded-full bg-white/90 backdrop-blur-md border border-[#263238]/10 hover:border-[#FF8A00]/60 shadow-2xl transition-all duration-500 group flex flex-col items-center justify-center text-center"
                     >
-                      <div className="w-14 h-14 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <prob.icon className="w-7 h-7 text-[#FF8A00]" />
+                      <div className="w-16 h-16 rounded-2xl bg-[#FF8A00]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <prob.icon className="w-8 h-8 text-[#FF8A00]" />
                       </div>
-                      <h3 className="text-lg font-headline mb-3 text-[#003366] leading-tight px-2">{prob.title}</h3>
-                      <p className="text-xs font-body text-[#263238]/60 leading-relaxed px-4">
+                      <h3 className="text-xl font-headline mb-4 text-[#003366] leading-tight px-2">{prob.title}</h3>
+                      <p className="text-sm font-body text-[#263238]/80 leading-relaxed px-4">
                         {prob.desc}
                       </p>
                     </div>
@@ -114,26 +115,22 @@ export function BrochureProblem() {
           {PROBLEMS.map((prob, idx) => (
             <div 
               key={idx} 
-              className="p-10 rounded-3xl bg-white border border-[#263238]/10 shadow-sm flex flex-col items-center text-center group"
+              className="p-10 rounded-3xl bg-white/90 backdrop-blur-sm border border-[#263238]/10 shadow-lg flex flex-col items-center text-center group"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-6">
-                <prob.icon className="w-6 h-6 text-[#FF8A00]" />
+              <div className="w-14 h-14 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-6">
+                <prob.icon className="w-7 h-7 text-[#FF8A00]" />
               </div>
-              <h3 className="text-xl font-headline mb-3 text-[#003366]">{prob.title}</h3>
-              <p className="text-sm font-body text-[#263238]/60 leading-relaxed">{prob.desc}</p>
+              <h3 className="text-2xl font-headline mb-4 text-[#003366]">{prob.title}</h3>
+              <p className="text-base font-body text-[#263238]/80 leading-relaxed">{prob.desc}</p>
             </div>
           ))}
           
-          <div className="p-10 rounded-3xl bg-white border-2 border-[#4A90E2]/20 flex flex-col items-center justify-center text-center shadow-md md:col-span-2">
+          <div className="p-10 rounded-3xl bg-white/95 backdrop-blur-sm border-2 border-[#4A90E2]/30 flex flex-col items-center justify-center text-center shadow-xl md:col-span-2">
             <p className="text-2xl font-headline italic text-[#4A90E2]">Does this sound like your agency?</p>
           </div>
         </div>
       </div>
       
-      {/* Background decoration flares */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF8A00]/5 blur-[150px] -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#4A90E2]/5 blur-[150px] -z-10" />
-
       <style jsx global>{`
         @keyframes spin-slow {
           from { transform: rotate(0deg); }
@@ -144,10 +141,10 @@ export function BrochureProblem() {
           to { transform: rotate(-360deg); }
         }
         .animate-spin-slow {
-          animation: spin-slow 50s linear infinite;
+          animation: spin-slow 60s linear infinite;
         }
         .animate-counter-spin-slow {
-          animation: counter-spin-slow 50s linear infinite;
+          animation: counter-spin-slow 60s linear infinite;
         }
       `}</style>
     </section>
