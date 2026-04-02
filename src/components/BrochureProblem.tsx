@@ -48,9 +48,9 @@ export function BrochureProblem() {
 
         {/* Desktop Orbital Layout */}
         <div className="hidden lg:block relative h-[700px] w-full max-w-[1000px] mx-auto">
-          {/* Central Anchor Card - Decreased Size */}
+          {/* Central Anchor Card - Compact Size */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="w-[240px] h-[240px] rounded-full bg-white border-2 border-[#4A90E2]/20 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
+            <div className="w-[220px] h-[220px] rounded-full bg-white border-2 border-[#4A90E2]/20 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
               <p className="text-xl md:text-2xl font-headline italic text-[#4A90E2] leading-tight">
                 Does this sound like your agency?
               </p>
@@ -70,16 +70,17 @@ export function BrochureProblem() {
                     transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-340px)`
                   }}
                 >
-                  {/* Counter-rotating child - Increased Size */}
-                  <div 
-                    className="animate-counter-spin-slow"
-                    style={{ transform: `rotate(-${angle}deg)` }}
-                  >
-                    <div className="w-[260px] h-[260px] p-8 rounded-full bg-white border border-[#263238]/10 hover:border-[#FF8A00]/40 shadow-xl transition-all duration-500 group flex flex-col items-center justify-center text-center">
-                      <div className="w-12 h-12 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <prob.icon className="w-6 h-6 text-[#FF8A00]" />
+                  {/* Layer 1: Counter-rotate the global orbital spin */}
+                  <div className="animate-counter-spin-slow">
+                    {/* Layer 2: Counter-rotate the static initial angle offset */}
+                    <div 
+                      style={{ transform: `rotate(-${angle}deg)` }}
+                      className="w-[280px] h-[280px] p-8 rounded-full bg-white border border-[#263238]/10 hover:border-[#FF8A00]/40 shadow-xl transition-all duration-500 group flex flex-col items-center justify-center text-center"
+                    >
+                      <div className="w-14 h-14 rounded-xl bg-[#FF8A00]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <prob.icon className="w-7 h-7 text-[#FF8A00]" />
                       </div>
-                      <h3 className="text-base font-headline mb-3 text-[#003366] leading-tight px-2">{prob.title}</h3>
+                      <h3 className="text-lg font-headline mb-3 text-[#003366] leading-tight px-2">{prob.title}</h3>
                       <p className="text-xs font-body text-[#263238]/60 leading-relaxed px-4">
                         {prob.desc}
                       </p>
