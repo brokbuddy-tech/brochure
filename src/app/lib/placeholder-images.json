@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "problem-bg",
+      "description": "Modern luxury Australian residential architecture",
+      "imageUrl": "https://picsum.photos/seed/re-chaos/1920/1080",
+      "imageHint": "modern house"
+    }
+  ]
+}

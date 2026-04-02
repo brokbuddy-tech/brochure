@@ -1,9 +1,9 @@
-
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { AlertCircle, Layers, Clock, Database, HelpCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const PROBLEMS = [
   {
@@ -33,9 +33,25 @@ const PROBLEMS = [
   }
 ];
 
+const bgImage = PlaceHolderImages.find(img => img.id === 'problem-bg');
+
 export function BrochureProblem() {
   return (
     <section className="py-24 px-6 bg-[#F4F7F9] text-[#263238] relative overflow-hidden min-h-[900px] flex flex-col items-center justify-center">
+      {/* Background Image with Overlay */}
+      {bgImage && (
+        <div className="absolute inset-0 z-0 opacity-10">
+          <Image
+            src={bgImage.imageUrl}
+            alt={bgImage.description}
+            fill
+            className="object-cover"
+            data-ai-hint={bgImage.imageHint}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F7F9] via-transparent to-[#F4F7F9]" />
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="max-w-2xl mb-20 text-center mx-auto reveal">
           <h2 className="text-3xl md:text-5xl font-headline mb-6 text-[#003366]">
@@ -48,7 +64,7 @@ export function BrochureProblem() {
 
         {/* Desktop Orbital Layout */}
         <div className="hidden lg:block relative h-[700px] w-full max-w-[1000px] mx-auto">
-          {/* Central Anchor Card - Compact Size */}
+          {/* Central Anchor Card */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
             <div className="w-[220px] h-[220px] rounded-full bg-white border-2 border-[#4A90E2]/20 shadow-2xl flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 hover:scale-105">
               <p className="text-xl md:text-2xl font-headline italic text-[#4A90E2] leading-tight">
@@ -113,7 +129,7 @@ export function BrochureProblem() {
         </div>
       </div>
       
-      {/* Background decoration */}
+      {/* Background decoration flares */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF8A00]/5 blur-[150px] -z-10" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#4A90E2]/5 blur-[150px] -z-10" />
 
