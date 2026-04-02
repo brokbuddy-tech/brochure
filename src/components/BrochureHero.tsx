@@ -24,12 +24,12 @@ export function BrochureHero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col pt-32 pb-20 overflow-hidden bg-white text-[#111827] px-6">
+    <section className="relative min-h-screen w-full flex flex-col pt-32 pb-20 overflow-hidden bg-gradient-to-b from-black via-[#020617] to-black text-white px-6">
       <Header />
       
-      {/* Background - Very minimal light theme */}
+      {/* Background - Ambient Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-slate-50 via-white to-white opacity-50" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-50" />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center space-y-10">
@@ -39,11 +39,11 @@ export function BrochureHero() {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <h1 className="text-5xl md:text-7xl font-headline leading-tight tracking-tight text-[#111827]">
+          <h1 className="text-5xl md:text-7xl font-headline leading-tight tracking-tight text-white">
             Run your entire brokerage <br className="hidden md:block" />
-            <span className="text-primary italic">from one system.</span>
+            <span className="text-secondary italic">from one system.</span>
           </h1>
-          <p className="text-xl md:text-2xl font-body text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl font-body text-slate-400 max-w-2xl mx-auto leading-relaxed">
             Listings, deals, and performance — all in one place.
           </p>
         </motion.div>
@@ -55,11 +55,11 @@ export function BrochureHero() {
           className="flex flex-col items-center space-y-6"
         >
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="h-14 px-10 rounded-full bg-[#111827] text-white hover:bg-slate-800 text-lg font-semibold group shadow-xl">
+            <Button size="lg" className="h-14 px-10 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 text-lg font-semibold group shadow-xl">
               Book Demo <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
-          <p className="text-sm font-body text-slate-400 font-medium">
+          <p className="text-sm font-body text-slate-500 font-medium">
             Used by modern real estate teams to manage listings, leads, and deals.
           </p>
         </motion.div>
@@ -71,7 +71,7 @@ export function BrochureHero() {
           transition={{ duration: 1, delay: 0.4 }}
           className="relative mt-20 max-w-6xl mx-auto"
         >
-          <div className="relative bg-white rounded-[2rem] border border-slate-200 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] overflow-hidden">
+          <div className="relative bg-white rounded-[2rem] border border-white/10 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden">
             {/* Browser Header */}
             <div className="h-12 border-b border-slate-100 bg-slate-50/50 flex items-center px-6 space-x-2">
               <div className="flex space-x-1.5">
@@ -85,7 +85,7 @@ export function BrochureHero() {
             </div>
 
             {/* Dashboard Content */}
-            <div className="aspect-[16/9] md:aspect-[21/9] p-8 flex bg-white">
+            <div className="aspect-[16/9] md:aspect-[21/9] p-8 flex bg-white text-[#111827]">
               {/* Sidebar Mock */}
               <div className="w-1/5 border-r border-slate-50 space-y-6 pr-6 hidden md:block">
                 <div className="h-4 w-2/3 bg-slate-100 rounded" />
@@ -103,7 +103,7 @@ export function BrochureHero() {
               <div className="flex-1 pl-0 md:pl-8 space-y-8 relative overflow-hidden">
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-bold">Agency Overview</h3>
+                    <h3 className="text-lg font-bold text-[#111827]">Agency Overview</h3>
                     <div className="h-2 w-24 bg-slate-100 rounded" />
                   </div>
                   <div className="flex space-x-2">
@@ -111,7 +111,7 @@ export function BrochureHero() {
                   </div>
                 </div>
 
-                {/* Animated State Container - Standardized Height */}
+                {/* Animated State Container */}
                 <div className="relative h-64 overflow-hidden">
                   <AnimatePresence mode="wait">
                     {activeStep === 0 && (
@@ -172,7 +172,7 @@ export function BrochureHero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1 }}
-                            className="text-sm font-headline italic text-primary leading-relaxed line-clamp-2"
+                            className="text-sm font-headline italic text-primary leading-relaxed"
                           >
                             "AI generates listings instantly."
                           </motion.div>
@@ -243,7 +243,7 @@ export function BrochureHero() {
                                   animate={{ x: 0, opacity: 1 }}
                                   className="p-4 bg-white border border-primary/20 rounded-xl shadow-lg shadow-primary/5"
                                 >
-                                  <p className="text-[10px] font-bold truncate">25 Bondi Beach</p>
+                                  <p className="text-[10px] font-bold truncate text-[#111827]">25 Bondi Beach</p>
                                   <div className="mt-2 flex items-center justify-between">
                                     <div className="h-1.5 w-12 bg-slate-100 rounded" />
                                     <TrendingUp className="w-3 h-3 text-primary" />
@@ -261,7 +261,7 @@ export function BrochureHero() {
             </div>
 
             {/* Step Indicators Footer */}
-            <div className="h-16 border-t border-slate-100 bg-slate-50/50 flex items-center justify-center space-x-12">
+            <div className="h-16 border-t border-slate-100 bg-slate-50/50 flex items-center justify-center space-x-12 text-[#111827]">
               {STEPS.map((step, idx) => (
                 <div 
                   key={step.id} 
@@ -275,8 +275,8 @@ export function BrochureHero() {
           </div>
           
           {/* Subtle Ambient Glow */}
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/5 blur-[100px] -z-10" />
-          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary/5 blur-[100px] -z-10" />
+          <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/20 blur-[100px] -z-10" />
+          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary/20 blur-[100px] -z-10" />
         </motion.div>
       </div>
     </section>

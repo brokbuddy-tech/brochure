@@ -18,12 +18,12 @@ export function Header() {
   return (
     <nav className={cn(
       "fixed top-0 left-0 w-full h-20 flex items-center justify-between px-6 lg:px-12 z-[100] transition-all duration-300",
-      isScrolled ? "bg-white/90 backdrop-blur-md border-b border-border/50 py-4 h-16" : "bg-transparent py-6 h-24"
+      isScrolled ? "bg-black/80 backdrop-blur-md border-b border-white/10 py-4 h-16" : "bg-transparent py-6 h-24"
     )}>
       <div className="flex items-center space-x-3 group cursor-pointer">
         <div className={cn(
           "p-2 rounded-xl transition-colors",
-          isScrolled ? "bg-primary/5" : "bg-white/10"
+          isScrolled ? "bg-white/5" : "bg-white/10"
         )}>
           <svg
             width="24"
@@ -33,7 +33,7 @@ export function Header() {
             xmlns="http://www.w3.org/2000/svg"
             className={cn(
               "transition-transform duration-500 group-hover:rotate-12",
-              isScrolled ? "text-primary" : "text-primary"
+              "text-white"
             )}
           >
             <path
@@ -46,8 +46,7 @@ export function Header() {
           </svg>
         </div>
         <span className={cn(
-          "text-xl font-headline tracking-widest uppercase transition-colors",
-          "text-primary"
+          "text-xl font-headline tracking-widest uppercase transition-colors text-white"
         )}>
           BrokBuddy
         </span>
@@ -55,10 +54,9 @@ export function Header() {
       
       <div className="flex items-center space-x-6">
         <div className={cn(
-          "hidden md:flex items-center space-x-6 text-[11px] uppercase tracking-widest font-body font-bold transition-colors",
-          isScrolled ? "text-muted-foreground" : "text-muted-foreground"
+          "hidden md:flex items-center space-x-6 text-[11px] uppercase tracking-widest font-body font-bold text-white/70"
         )}>
-          <a href="mailto:info@brokbuddy.com" className="hover:text-primary transition-colors">Contact</a>
+          <a href="mailto:info@brokbuddy.com" className="hover:text-white transition-colors">Contact</a>
         </div>
         <Button 
           size="sm" 
