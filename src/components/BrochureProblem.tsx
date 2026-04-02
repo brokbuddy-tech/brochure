@@ -49,18 +49,20 @@ export function BrochureProblem() {
         </div>
 
         {/* Clean Pain Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1100px] mx-auto mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1100px] mx-auto mb-20 items-start">
           {PROBLEMS.map((prob, idx) => (
             <div 
               key={idx} 
               className="p-7 bg-white border border-slate-200 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-slate-300 group flex flex-col min-h-[220px]"
             >
-              <div className="mb-6 flex items-center justify-start">
+              <div className="mb-6 flex items-center justify-start h-10 w-10 shrink-0">
                 <prob.icon className="w-6 h-6 text-[#374151]" />
               </div>
-              <div className="flex-1 flex flex-col gap-2">
-                <h3 className="text-xl font-headline text-[#111827]">{prob.title}</h3>
-                <p className="text-slate-500 font-body leading-relaxed">
+              <div className="flex-1 flex flex-col gap-2 overflow-hidden">
+                <h3 className="text-xl font-headline text-[#111827] min-h-[48px] line-clamp-2">
+                  {prob.title}
+                </h3>
+                <p className="text-slate-500 font-body leading-relaxed line-clamp-2">
                   {prob.desc}
                 </p>
               </div>

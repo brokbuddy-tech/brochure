@@ -149,7 +149,7 @@ export function BrochureHero() {
                         exit={{ opacity: 0, x: -20 }}
                         className="grid grid-cols-2 gap-8 h-full"
                       >
-                        <div className="p-6 bg-slate-50 rounded-3xl space-y-4">
+                        <div className="p-6 bg-slate-50 rounded-3xl space-y-4 flex flex-col justify-center">
                           <div className="h-4 w-1/2 bg-slate-200 rounded" />
                           <div className="space-y-2">
                             {[1, 2, 3, 4].map(i => (
@@ -163,8 +163,8 @@ export function BrochureHero() {
                             ))}
                           </div>
                         </div>
-                        <div className="p-6 bg-primary/5 border border-primary/20 rounded-3xl space-y-4 flex flex-col justify-center">
-                          <div className="flex items-center space-x-2 text-primary mb-2">
+                        <div className="p-6 bg-primary/5 border border-primary/20 rounded-3xl flex flex-col justify-center text-center">
+                          <div className="flex items-center justify-center space-x-2 text-primary mb-2">
                             <Sparkles className="w-4 h-4" />
                             <span className="text-[10px] font-bold uppercase tracking-widest">AI Listing Agent</span>
                           </div>
@@ -172,9 +172,9 @@ export function BrochureHero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1 }}
-                            className="text-sm font-headline italic text-primary leading-relaxed"
+                            className="text-sm font-headline italic text-primary leading-relaxed line-clamp-2"
                           >
-                            "AI creates ready-to-publish listings instantly."
+                            "AI generates listings instantly."
                           </motion.div>
                         </div>
                       </motion.div>
@@ -206,12 +206,12 @@ export function BrochureHero() {
                               className="p-4 bg-white border border-slate-100 rounded-2xl shadow-sm h-[120px] flex flex-col justify-between"
                             >
                               <div className="flex items-center space-x-3">
-                                <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
+                                <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0">
                                   <User className="w-4 h-4 text-slate-400" />
                                 </div>
-                                <div className="text-left">
-                                  <p className="text-[10px] font-bold">{lead.name}</p>
-                                  <p className="text-[8px] text-slate-400">{lead.type}</p>
+                                <div className="text-left overflow-hidden">
+                                  <p className="text-[10px] font-bold truncate">{lead.name}</p>
+                                  <p className="text-[8px] text-slate-400 truncate">{lead.type}</p>
                                 </div>
                               </div>
                               <div className="flex items-center justify-between border-t border-slate-50 pt-2">
@@ -235,7 +235,7 @@ export function BrochureHero() {
                         <div className="grid grid-cols-4 gap-4 h-full">
                           {["Appraisal", "Listing", "Negotiation", "Settlement"].map((stage, i) => (
                             <div key={i} className="space-y-3">
-                              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">{stage}</p>
+                              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-300 truncate">{stage}</p>
                               <div className="h-[2px] w-full bg-slate-50" />
                               {i === 2 && (
                                 <motion.div
@@ -243,7 +243,7 @@ export function BrochureHero() {
                                   animate={{ x: 0, opacity: 1 }}
                                   className="p-4 bg-white border border-primary/20 rounded-xl shadow-lg shadow-primary/5"
                                 >
-                                  <p className="text-[10px] font-bold">25 Bondi Beach</p>
+                                  <p className="text-[10px] font-bold truncate">25 Bondi Beach</p>
                                   <div className="mt-2 flex items-center justify-between">
                                     <div className="h-1.5 w-12 bg-slate-100 rounded" />
                                     <TrendingUp className="w-3 h-3 text-primary" />
