@@ -27,39 +27,40 @@ export function BrochureTransformation() {
   });
 
   // Problem state (Visible initially)
-  // Stays fully visible until 40%, then fades out quickly
-  const problemOpacity = useTransform(scrollYProgress, [0, 0.4, 0.5], [1, 1, 0]);
-  const problemY = useTransform(scrollYProgress, [0, 0.4, 0.5], [0, 0, -30]);
-  const problemScale = useTransform(scrollYProgress, [0, 0.4, 0.5], [1, 1, 0.95]);
+  // Stays fully visible until 35%, then fades out by 50%
+  const problemOpacity = useTransform(scrollYProgress, [0, 0.35, 0.5], [1, 1, 0]);
+  const problemY = useTransform(scrollYProgress, [0, 0.35, 0.5], [0, 0, -40]);
+  const problemScale = useTransform(scrollYProgress, [0, 0.35, 0.5], [1, 1, 0.9]);
 
   // Solution state (Hidden initially)
-  // Starts appearing at 50%, fully visible by 65%
-  const solutionOpacity = useTransform(scrollYProgress, [0.45, 0.55, 0.7], [0, 1, 1]);
-  const solutionY = useTransform(scrollYProgress, [0.45, 0.55, 0.7], [30, 0, 0]);
-  const solutionScale = useTransform(scrollYProgress, [0.45, 0.55, 0.7], [1.05, 1, 1]);
+  // Starts appearing at 45%, fully visible by 65%
+  const solutionOpacity = useTransform(scrollYProgress, [0.45, 0.6, 0.85], [0, 1, 1]);
+  const solutionY = useTransform(scrollYProgress, [0.45, 0.6, 0.85], [40, 0, 0]);
+  const solutionScale = useTransform(scrollYProgress, [0.45, 0.6, 0.85], [1.1, 1, 1]);
 
   // Pointer events management to ensure interactivity
   const problemPointerEvents = useTransform(scrollYProgress, (v) => v > 0.48 ? "none" : "auto");
   const solutionPointerEvents = useTransform(scrollYProgress, (v) => v < 0.52 ? "none" : "auto");
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] bg-white">
+    <section ref={containerRef} className="relative h-[180vh] bg-white">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Step 1: Problem State (High Z-Index initially) */}
+        {/* Step 1: Problem State */}
         <motion.div 
           style={{ 
             opacity: problemOpacity, 
             y: problemY, 
             scale: problemScale,
-            pointerEvents: problemPointerEvents
+            pointerEvents: problemPointerEvents,
+            zIndex: 20
           }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         >
           <div className="max-w-4xl space-y-12">
             <h2 className="text-4xl md:text-6xl font-headline text-slate-900 tracking-tight leading-tight">
               Managing real estate <br />
-              <span className="text-red-500 italic font-bold">shouldn't</span> feel like this.
+              <span className="text-red-600 italic font-bold">shouldn't</span> feel like this.
             </h2>
             
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
@@ -88,9 +89,10 @@ export function BrochureTransformation() {
             opacity: solutionOpacity, 
             y: solutionY, 
             scale: solutionScale,
-            pointerEvents: solutionPointerEvents
+            pointerEvents: solutionPointerEvents,
+            zIndex: 10
           }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         >
           <div className="max-w-5xl w-full space-y-16">
             <div className="space-y-6">
