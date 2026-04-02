@@ -33,22 +33,23 @@ const PROBLEMS = [
   }
 ];
 
-const bgImage = PlaceHolderImages.find(img => img.id === 'problem-bg');
-
 export function BrochureProblem() {
+  const bgImage = PlaceHolderImages.find(img => img.id === 'problem-bg');
+
   return (
     <section className="py-24 px-6 bg-[#F4F7F9] text-[#263238] relative overflow-hidden min-h-[900px] flex flex-col items-center justify-center">
       {/* Background Image with Overlay */}
       {bgImage && (
-        <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute inset-0 z-0">
           <Image
             src={bgImage.imageUrl}
             alt={bgImage.description}
             fill
-            className="object-cover"
+            priority
+            className="object-cover opacity-20"
             data-ai-hint={bgImage.imageHint}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F7F9] via-transparent to-[#F4F7F9]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F7F9] via-white/40 to-[#F4F7F9]" />
         </div>
       )}
 
