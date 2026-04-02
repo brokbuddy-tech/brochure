@@ -91,7 +91,7 @@ export function BrochureHero() {
                 <div className="h-4 w-2/3 bg-slate-100 rounded" />
                 <div className="space-y-3">
                   {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className={`h-8 rounded-lg flex items-center px-3 ${i - 1 === activeStep ? 'bg-primary/5 text-primary' : 'text-slate-400'}`}>
+                    <div key={i} className={`h-8 rounded-lg flex items-center px-3 transition-colors ${i - 1 === activeStep ? 'bg-primary/5 text-primary' : 'text-slate-400'}`}>
                       <div className="w-3 h-3 rounded-full bg-current opacity-20 mr-2" />
                       <div className="h-2 w-full bg-current opacity-10 rounded" />
                     </div>
@@ -111,8 +111,8 @@ export function BrochureHero() {
                   </div>
                 </div>
 
-                {/* Animated State Container */}
-                <div className="h-full">
+                {/* Animated State Container - Standardized Height to prevent jumps */}
+                <div className="relative h-64 overflow-hidden">
                   <AnimatePresence mode="wait">
                     {activeStep === 0 && (
                       <motion.div
@@ -120,7 +120,7 @@ export function BrochureHero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.05 }}
-                        className="p-8 border-2 border-dashed border-slate-100 rounded-3xl flex flex-col items-center justify-center text-center space-y-4 h-64"
+                        className="p-8 border-2 border-dashed border-slate-100 rounded-3xl flex flex-col items-center justify-center text-center space-y-4 h-full"
                       >
                         <div className="p-4 bg-slate-50 rounded-full">
                           <Building2 className="w-8 h-8 text-slate-300" />
@@ -147,7 +147,7 @@ export function BrochureHero() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        className="grid grid-cols-2 gap-8 h-64"
+                        className="grid grid-cols-2 gap-8 h-full"
                       >
                         <div className="p-6 bg-slate-50 rounded-3xl space-y-4">
                           <div className="h-4 w-1/2 bg-slate-200 rounded" />
@@ -186,7 +186,7 @@ export function BrochureHero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="space-y-4"
+                        className="space-y-4 h-full"
                       >
                         <div className="flex items-center justify-between px-2">
                           <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Incoming Enquiries</p>
@@ -230,7 +230,7 @@ export function BrochureHero() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
-                        className="space-y-6"
+                        className="space-y-6 h-full"
                       >
                         <div className="grid grid-cols-4 gap-4">
                           {["Appraisal", "Listing", "Negotiation", "Settlement"].map((stage, i) => (
