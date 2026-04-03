@@ -3,11 +3,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  PlusCircle, 
-  Sparkles, 
-  Target, 
-  CheckCircle2, 
+import {
+  PlusCircle,
+  Sparkles,
+  Target,
+  CheckCircle2,
   ArrowRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -41,10 +41,10 @@ export function BrochureTransformation() {
   return (
     <section className="py-32 px-6 bg-white border-t border-slate-50 overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-32">
-        
+
         {/* Part 1: The Problem Context */}
         <div className="flex flex-col items-center justify-center text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -55,10 +55,10 @@ export function BrochureTransformation() {
               Managing real estate <br />
               <span className="text-accent italic font-bold">shouldn't</span> feel like this.
             </h2>
-            
+
             <div className="flex flex-wrap justify-center gap-4">
               {PROBLEMS.map((problem, idx) => (
-                <motion.div 
+                <motion.div
                   key={idx}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -75,7 +75,7 @@ export function BrochureTransformation() {
 
         {/* Part 2: The Solution Flow - CONNECTED FLOW BAR */}
         <div className="flex flex-col items-center justify-center text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -91,15 +91,15 @@ export function BrochureTransformation() {
 
             {/* Unified System Block (Flow Bar) */}
             <div className="relative w-full py-16 px-8 md:px-16 bg-white rounded-[2.5rem] border border-slate-200 shadow-xl overflow-hidden">
-              
+
               {/* Connector Line (Desktop) */}
-              <div className="hidden md:block absolute top-[92px] left-[15%] right-[15%] h-[1px] bg-slate-100 -z-0" />
-              
+              <div className="hidden md:block absolute top-[103px] left-[15%] right-[15%] h-[1px] bg-slate-100 -z-0" />
+
               {/* Animated Glowing Dot (Desktop) */}
-              <div className="hidden md:block absolute top-[92px] left-[15%] right-[15%] h-[1px] -z-0">
+              <div className="hidden md:block absolute top-[96px] left-[15%] right-[15%] h-[1px] z-0">
                 <motion.div
                   className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-accent rounded-full"
-                  animate={{ 
+                  animate={{
                     left: `${(activeStep / (SOLUTION_STEPS.length - 1)) * 100}%`,
                     scale: [1, 1.4, 1],
                     boxShadow: [
@@ -108,7 +108,7 @@ export function BrochureTransformation() {
                       "0 0 10px rgba(255,138,0,0.5)"
                     ]
                   }}
-                  transition={{ 
+                  transition={{
                     left: { duration: 0.8, ease: "easeInOut" },
                     scale: { duration: 0.6, repeat: Infinity, repeatType: "reverse" },
                     boxShadow: { duration: 0.6, repeat: Infinity, repeatType: "reverse" }
@@ -120,16 +120,16 @@ export function BrochureTransformation() {
               <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
                 {/* Vertical Connector Line (Mobile) */}
                 <div className="md:hidden absolute top-8 bottom-8 left-1/2 -translate-x-1/2 w-[1px] bg-slate-100 -z-0" />
-                
+
                 {/* Mobile Glowing Dot */}
                 <div className="md:hidden absolute top-8 bottom-8 left-1/2 -translate-x-1/2 w-[1px] -z-0">
                   <motion.div
                     className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-accent rounded-full"
-                    animate={{ 
+                    animate={{
                       top: `${(activeStep / (SOLUTION_STEPS.length - 1)) * 100}%`,
                       scale: [1, 1.4, 1]
                     }}
-                    transition={{ 
+                    transition={{
                       top: { duration: 0.8, ease: "easeInOut" },
                       scale: { duration: 0.6, repeat: Infinity, repeatType: "reverse" }
                     }}
@@ -141,8 +141,8 @@ export function BrochureTransformation() {
                   const Icon = step.icon;
 
                   return (
-                    <motion.div 
-                      key={idx} 
+                    <motion.div
+                      key={idx}
                       className={cn(
                         "relative flex flex-col items-center transition-all duration-700 w-full md:w-auto",
                         isActive ? "opacity-100 scale-110" : "opacity-30 scale-100"
@@ -157,7 +157,7 @@ export function BrochureTransformation() {
                           isActive ? "text-accent" : "text-slate-400"
                         )} />
                       </div>
-                      
+
                       <div className="text-center md:max-w-[140px]">
                         <h4 className={cn(
                           "font-headline text-base font-bold transition-colors duration-500 leading-tight tracking-tight",
@@ -173,7 +173,7 @@ export function BrochureTransformation() {
                           "hidden lg:flex absolute -right-8 top-8 items-center transition-opacity duration-500",
                           idx < activeStep ? "opacity-100" : "opacity-10"
                         )}>
-                           <ArrowRight className="w-4 h-4 text-slate-300" />
+                          <ArrowRight className="w-4 h-4 text-slate-300" />
                         </div>
                       )}
                     </motion.div>
