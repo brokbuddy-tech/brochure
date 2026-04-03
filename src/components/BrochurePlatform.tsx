@@ -3,14 +3,14 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { 
-  Building2, 
-  Zap, 
-  Home, 
-  Users, 
-  Sparkles, 
-  BarChart3, 
-  GitPullRequest, 
+import {
+  Building2,
+  Zap,
+  Home,
+  Users,
+  Sparkles,
+  BarChart3,
+  GitPullRequest,
   DollarSign,
   ArrowRight
 } from 'lucide-react';
@@ -30,21 +30,21 @@ const MODULES = [
   },
   {
     icon: Home,
-    title: "Property Management",
-    benefit: "Scale your rent roll without the operational headache.",
-    features: ["Lease tracking", "Landlord portal", "Inspection workflows", "Repair requests"]
+    title: "Property & Listings",
+    benefit: "Manage your entire inventory and listing quality in one place.",
+    features: ["Property Listings", "Inventory Control", "Quality Scoring (LQS)", "Listing Optimization"]
   },
   {
     icon: Users,
     title: "Client Insights",
     benefit: "Know your prospects better than they know themselves.",
-    features: ["360 client view", "Communication history", "Preference tracking", "Automated follow-ups"]
+    features: ["360 client view", "Automated follow-ups"]
   },
   {
     icon: Sparkles,
     title: "AI-Powered Insights",
     benefit: "Surface opportunities before they’re obvious.",
-    features: ["Market scoring", "Lead potential scoring", "Insight automation", "Predictive churn"]
+    features: ["Market scoring", "Insight automation", "Text Summarizer"]
   },
   {
     icon: BarChart3,
@@ -62,7 +62,7 @@ const MODULES = [
     icon: DollarSign,
     title: "Revenue Tracking",
     benefit: "Forecast your commissions and monitor growth with precision.",
-    features: ["Commission splits", "Cash flow forecast", "Revenue reports", "Payment tracking"]
+    features: ["Commission splits", "Revenue reports"]
   }
 ];
 
@@ -98,7 +98,7 @@ export function BrochurePlatform() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {MODULES.map((mod, idx) => (
-            <div 
+            <div
               key={idx}
               className={cn(
                 "relative p-8 rounded-3xl bg-white border border-border/10 transition-all duration-500 cursor-default group",
@@ -118,7 +118,7 @@ export function BrochurePlatform() {
                 hoveredIdx === idx ? "text-primary" : "text-primary/70"
               )}>{mod.title}</h3>
               <p className="text-sm font-body text-muted-foreground mb-6 leading-relaxed">{mod.benefit}</p>
-              
+
               <div className={cn(
                 "overflow-hidden transition-all duration-500",
                 hoveredIdx === idx ? "max-h-40 opacity-100 mt-2" : "max-h-0 opacity-0"
