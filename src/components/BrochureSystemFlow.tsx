@@ -44,7 +44,7 @@ const STEPS = [
   }
 ];
 
-const premiumEasing = [0.22, 1, 0.36, 1];
+const premiumEasing = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export function BrochureSystemFlow() {
   return (

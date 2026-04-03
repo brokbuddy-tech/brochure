@@ -1,24 +1,74 @@
-import type {Metadata} from 'next';
+import type { Metadata, Viewport } from 'next';
+import Image from 'next/image';
 import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
+import StaggeredMenu from '@/components/StaggeredMenu';
+import { Footer } from '@/components/Footer';
+import { AnimatedLogoSection } from '@/components/WhoWeAre';
+import { BackToTopButton } from '@/components/BackToTopButton';
+import { NavigationProvider } from '@/context/NavigationContext';
+import { JourneyHud } from '@/components/JourneyHud';
+import { SmoothScroll } from '@/components/SmoothScroll';
+import { inter, sora } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   title: 'BrokBuddy | Evolved Real Estate Management',
   description: 'A structured, elite system for managing your entire real estate business. Designed for Australian agencies.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to homepage', link: 'https://brokbuddy.com' },
+  { label: 'Services', ariaLabel: 'View our services', link: 'https://brokbuddy.com/#services' },
+  { label: 'Plans', ariaLabel: 'See our plans', link: 'https://brokbuddy.com/#pricing' },
+  { label: 'About', ariaLabel: 'Learn about us', link: 'https://brokbuddy.com/about' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: 'https://brokbuddy.com/contact' },
+];
+
+const socialItems = [
+  { label: 'LinkedIn', link: 'https://linkedin.com' },
+  { label: 'Email', link: 'mailto:info@brokbuddy.com' },
+];
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-      </head>
-      <body className="antialiased">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${sora.variable} font-body antialiased relative w-full overflow-x-hidden`}>
+        <NavigationProvider>
+          <SmoothScroll>
+            <StaggeredMenu
+              logoComponent={
+                <div className="relative w-20 h-12">
+                  <Image
+                    src="/assets/brokbuddy_logo.png"
+                    alt="BrokBuddy Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              }
+              items={menuItems}
+              socialItems={socialItems}
+              displaySocials={true}
+              displayItemNumbering={false}
+              isFixed={true}
+            />
+            {children}
+            <AnimatedLogoSection />
+            <Footer />
+            <BackToTopButton />
+            <Toaster />
+            <JourneyHud />
+          </SmoothScroll>
+        </NavigationProvider>
+      </body>
     </html>
   );
 }

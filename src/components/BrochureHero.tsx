@@ -4,8 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Building2, TrendingUp, Sparkles, User } from 'lucide-react';
-import { Header } from '@/components/Header';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigation } from '@/context/NavigationContext';
 
 const STEPS = [
   { id: 'add', label: 'Adding Property' },
@@ -16,6 +16,7 @@ const STEPS = [
 
 export function BrochureHero() {
   const [activeStep, setActiveStep] = useState(0);
+  const { launchMission } = useNavigation();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,8 +27,7 @@ export function BrochureHero() {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-gradient-to-b from-black via-[#020617] to-black text-white px-4 md:px-6">
-      <Header />
-      
+
       {/* Background - Ambient Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-50" />
@@ -48,7 +48,7 @@ export function BrochureHero() {
             Listings, deals, and performance — all in one place.
           </p>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function BrochureHero() {
           className="flex flex-col items-center space-y-6"
         >
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="w-full sm:w-auto h-14 px-10 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 text-lg font-semibold group shadow-xl">
+            <Button size="lg" className="w-full sm:w-auto h-14 px-10 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 text-lg font-semibold group shadow-xl" onClick={() => launchMission('https://brokbuddy.com/#pricing')}>
               Book Demo <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
@@ -154,12 +154,12 @@ export function BrochureHero() {
                           <div className="h-3 md:h-4 w-1/2 bg-slate-200 rounded" />
                           <div className="space-y-1.5 md:space-y-2">
                             {[1, 2, 3, 4].map(i => (
-                              <motion.div 
+                              <motion.div
                                 key={i}
                                 initial={{ width: 0 }}
                                 animate={{ width: "100%" }}
                                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                                className="h-1 md:h-2 bg-slate-200 rounded" 
+                                className="h-1 md:h-2 bg-slate-200 rounded"
                               />
                             ))}
                           </div>
@@ -169,7 +169,7 @@ export function BrochureHero() {
                             <Sparkles className="w-3 h-3 md:w-4 md:h-4" />
                             <span className="text-[7px] md:text-[10px] font-bold uppercase tracking-widest">AI Listing Agent</span>
                           </div>
-                          <motion.div 
+                          <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1 }}
@@ -264,8 +264,8 @@ export function BrochureHero() {
             {/* Step Indicators Footer */}
             <div className="min-h-[48px] md:min-h-[64px] py-3 md:py-4 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-center gap-x-4 md:gap-x-12 px-4 text-[#111827]">
               {STEPS.map((step, idx) => (
-                <div 
-                  key={step.id} 
+                <div
+                  key={step.id}
                   className={`flex items-center space-x-1.5 md:space-x-3 transition-opacity duration-500 ${idx === activeStep ? 'opacity-100' : 'opacity-30'}`}
                 >
                   <div className={`w-1 md:w-2 h-1 md:h-2 rounded-full ${idx === activeStep ? 'bg-primary' : 'bg-slate-300'}`} />
@@ -274,7 +274,7 @@ export function BrochureHero() {
               ))}
             </div>
           </div>
-          
+
           {/* Subtle Ambient Glow */}
           <div className="absolute -top-10 md:-top-20 -left-10 md:-left-20 w-48 md:w-64 h-48 md:h-64 bg-primary/20 blur-[80px] md:blur-[100px] -z-10" />
           <div className="absolute -bottom-10 md:-bottom-20 -right-10 md:-right-20 w-48 md:w-64 h-48 md:h-64 bg-secondary/20 blur-[80px] md:blur-[100px] -z-10" />

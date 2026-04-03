@@ -9,7 +9,6 @@ import { BrochureAI } from '@/components/BrochureAI';
 import { BrochureSystemFlow } from '@/components/BrochureSystemFlow';
 import { BrochureDashboard } from '@/components/BrochureDashboard';
 import { BrochurePricing } from '@/components/BrochurePricing';
-import { BrochureFooter } from '@/components/BrochureFooter';
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -39,7 +38,6 @@ export default function Home() {
       <BrochureSystemFlow />
       <BrochureDashboard />
       <BrochurePricing />
-      <BrochureFooter />
     </div>
   );
 }
